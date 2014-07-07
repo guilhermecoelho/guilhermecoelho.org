@@ -1,0 +1,316 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="meivorts_validacaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Compromisso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Descricao" Type="varchar" MaxLength="250" />
+          <Property Name="Data" Type="datetime" Nullable="false" />
+          <Property Name="Hora" Type="time" Precision="7" Nullable="false" />
+          <Property Name="TipoCompromisso" Type="int" Nullable="false" />
+          <Property Name="Contato" Type="int" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+          <Property Name="Excluido" Type="bit" Nullable="false" />
+          <Property Name="Ativo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Contato">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Observacao" Type="varchar" MaxLength="250" />
+          <Property Name="Telefone" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Facebook" Type="varchar" MaxLength="50" />
+          <Property Name="Twitter" Type="varchar" MaxLength="50" />
+          <Property Name="TipoContato" Type="int" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+          <Property Name="Excluido" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoCompromisso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeCompromisso" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+          <Property Name="Excluido" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TipoContato">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NomeTipoContato" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+          <Property Name="Excluido" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Compromisso_Contato">
+          <End Role="Contato" Type="Self.Contato" Multiplicity="1" />
+          <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contato">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Compromisso">
+              <PropertyRef Name="Contato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compromisso_TipoCompromisso">
+          <End Role="TipoCompromisso" Type="Self.TipoCompromisso" Multiplicity="1" />
+          <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCompromisso">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Compromisso">
+              <PropertyRef Name="TipoCompromisso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contato_TipoContato">
+          <End Role="TipoContato" Type="Self.TipoContato" Multiplicity="1" />
+          <End Role="Contato" Type="Self.Contato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoContato">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contato">
+              <PropertyRef Name="TipoContato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="meivorts_validacaoModelStoreContainer">
+          <EntitySet Name="Compromisso" EntityType="Self.Compromisso" Schema="meivorts" store:Type="Tables" />
+          <EntitySet Name="Contato" EntityType="Self.Contato" Schema="meivorts" store:Type="Tables" />
+          <EntitySet Name="TipoCompromisso" EntityType="Self.TipoCompromisso" Schema="meivorts" store:Type="Tables" />
+          <EntitySet Name="TipoContato" EntityType="Self.TipoContato" Schema="meivorts" store:Type="Tables" />
+          <AssociationSet Name="FK_Compromisso_Contato" Association="Self.FK_Compromisso_Contato">
+            <End Role="Contato" EntitySet="Contato" />
+            <End Role="Compromisso" EntitySet="Compromisso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compromisso_TipoCompromisso" Association="Self.FK_Compromisso_TipoCompromisso">
+            <End Role="TipoCompromisso" EntitySet="TipoCompromisso" />
+            <End Role="Compromisso" EntitySet="Compromisso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contato_TipoContato" Association="Self.FK_Contato_TipoContato">
+            <End Role="TipoContato" EntitySet="TipoContato" />
+            <End Role="Contato" EntitySet="Contato" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="meivorts_validacaoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Compromisso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Nome" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descricao" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Hora" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="TipoCompromisso" Type="Int32" Nullable="false" />
+          <Property Name="Contato" Type="Int32" Nullable="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Excluido" Type="Boolean" Nullable="false" />
+          <Property Name="Ativo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Contato1" Relationship="Self.FK_Compromisso_Contato" FromRole="Compromisso" ToRole="Contato" />
+          <NavigationProperty Name="TipoCompromisso1" Relationship="Self.FK_Compromisso_TipoCompromisso" FromRole="Compromisso" ToRole="TipoCompromisso" />
+        </EntityType>
+        <EntityType Name="Contato">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Observacao" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Telefone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="TipoContato" Type="Int32" Nullable="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Excluido" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Compromissoes" Relationship="Self.FK_Compromisso_Contato" FromRole="Contato" ToRole="Compromisso" />
+          <NavigationProperty Name="TipoContato1" Relationship="Self.FK_Contato_TipoContato" FromRole="Contato" ToRole="TipoContato" />
+        </EntityType>
+        <EntityType Name="TipoCompromisso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeCompromisso" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Excluido" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Compromissoes" Relationship="Self.FK_Compromisso_TipoCompromisso" FromRole="TipoCompromisso" ToRole="Compromisso" />
+        </EntityType>
+        <EntityType Name="TipoContato">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NomeTipoContato" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Excluido" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Contatoes" Relationship="Self.FK_Contato_TipoContato" FromRole="TipoContato" ToRole="Contato" />
+        </EntityType>
+        <Association Name="FK_Compromisso_Contato">
+          <End Role="Contato" Type="Self.Contato" Multiplicity="1" />
+          <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contato">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Compromisso">
+              <PropertyRef Name="Contato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Compromisso_TipoCompromisso">
+          <End Role="TipoCompromisso" Type="Self.TipoCompromisso" Multiplicity="1" />
+          <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoCompromisso">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Compromisso">
+              <PropertyRef Name="TipoCompromisso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contato_TipoContato">
+          <End Role="TipoContato" Type="Self.TipoContato" Multiplicity="1" />
+          <End Role="Contato" Type="Self.Contato" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoContato">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Contato">
+              <PropertyRef Name="TipoContato" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="meivortsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Compromissoes" EntityType="Self.Compromisso" />
+          <EntitySet Name="Contatoes" EntityType="Self.Contato" />
+          <EntitySet Name="TipoCompromissoes" EntityType="Self.TipoCompromisso" />
+          <EntitySet Name="TipoContatoes" EntityType="Self.TipoContato" />
+          <AssociationSet Name="FK_Compromisso_Contato" Association="Self.FK_Compromisso_Contato">
+            <End Role="Contato" EntitySet="Contatoes" />
+            <End Role="Compromisso" EntitySet="Compromissoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compromisso_TipoCompromisso" Association="Self.FK_Compromisso_TipoCompromisso">
+            <End Role="TipoCompromisso" EntitySet="TipoCompromissoes" />
+            <End Role="Compromisso" EntitySet="Compromissoes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contato_TipoContato" Association="Self.FK_Contato_TipoContato">
+            <End Role="TipoContato" EntitySet="TipoContatoes" />
+            <End Role="Contato" EntitySet="Contatoes" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="meivorts_validacaoModelStoreContainer" CdmEntityContainer="meivortsEntities">
+          <EntitySetMapping Name="Compromissoes">
+            <EntityTypeMapping TypeName="meivorts_validacaoModel.Compromisso">
+              <MappingFragment StoreEntitySet="Compromisso">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Descricao" ColumnName="Descricao" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Hora" ColumnName="Hora" />
+                <ScalarProperty Name="TipoCompromisso" ColumnName="TipoCompromisso" />
+                <ScalarProperty Name="Contato" ColumnName="Contato" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="Excluido" ColumnName="Excluido" />
+                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contatoes">
+            <EntityTypeMapping TypeName="meivorts_validacaoModel.Contato">
+              <MappingFragment StoreEntitySet="Contato">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
+                <ScalarProperty Name="Observacao" ColumnName="Observacao" />
+                <ScalarProperty Name="Telefone" ColumnName="Telefone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+                <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+                <ScalarProperty Name="TipoContato" ColumnName="TipoContato" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="Excluido" ColumnName="Excluido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoCompromissoes">
+            <EntityTypeMapping TypeName="meivorts_validacaoModel.TipoCompromisso">
+              <MappingFragment StoreEntitySet="TipoCompromisso">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NomeCompromisso" ColumnName="NomeCompromisso" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="Excluido" ColumnName="Excluido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoContatoes">
+            <EntityTypeMapping TypeName="meivorts_validacaoModel.TipoContato">
+              <MappingFragment StoreEntitySet="TipoContato">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="NomeTipoContato" ColumnName="NomeTipoContato" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="Excluido" ColumnName="Excluido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
