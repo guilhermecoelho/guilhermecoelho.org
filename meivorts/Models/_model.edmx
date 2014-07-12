@@ -149,7 +149,7 @@
           <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Excluido" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Compromissoes" Relationship="Self.FK_Compromisso_Contato" FromRole="Contato" ToRole="Compromisso" />
+          <NavigationProperty Name="Compromisso" Relationship="Self.FK_Compromisso_Contato" FromRole="Contato" ToRole="Compromisso" />
           <NavigationProperty Name="TipoContato1" Relationship="Self.FK_Contato_TipoContato" FromRole="Contato" ToRole="TipoContato" />
         </EntityType>
         <EntityType Name="TipoCompromisso">
@@ -161,7 +161,7 @@
           <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Excluido" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Compromissoes" Relationship="Self.FK_Compromisso_TipoCompromisso" FromRole="TipoCompromisso" ToRole="Compromisso" />
+          <NavigationProperty Name="Compromisso" Relationship="Self.FK_Compromisso_TipoCompromisso" FromRole="TipoCompromisso" ToRole="Compromisso" />
         </EntityType>
         <EntityType Name="TipoContato">
           <Key>
@@ -172,7 +172,7 @@
           <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Excluido" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Contatoes" Relationship="Self.FK_Contato_TipoContato" FromRole="TipoContato" ToRole="Contato" />
+          <NavigationProperty Name="Contato" Relationship="Self.FK_Contato_TipoContato" FromRole="TipoContato" ToRole="Contato" />
         </EntityType>
         <Association Name="FK_Compromisso_Contato">
           <End Role="Contato" Type="Self.Contato" Multiplicity="1" />
@@ -210,22 +210,22 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="meivortsEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Compromissoes" EntityType="Self.Compromisso" />
-          <EntitySet Name="Contatoes" EntityType="Self.Contato" />
-          <EntitySet Name="TipoCompromissoes" EntityType="Self.TipoCompromisso" />
-          <EntitySet Name="TipoContatoes" EntityType="Self.TipoContato" />
+        <EntityContainer Name="meivorts_validacaoEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Compromisso" EntityType="Self.Compromisso" />
+          <EntitySet Name="Contato" EntityType="Self.Contato" />
+          <EntitySet Name="TipoCompromisso" EntityType="Self.TipoCompromisso" />
+          <EntitySet Name="TipoContato" EntityType="Self.TipoContato" />
           <AssociationSet Name="FK_Compromisso_Contato" Association="Self.FK_Compromisso_Contato">
-            <End Role="Contato" EntitySet="Contatoes" />
-            <End Role="Compromisso" EntitySet="Compromissoes" />
+            <End Role="Contato" EntitySet="Contato" />
+            <End Role="Compromisso" EntitySet="Compromisso" />
           </AssociationSet>
           <AssociationSet Name="FK_Compromisso_TipoCompromisso" Association="Self.FK_Compromisso_TipoCompromisso">
-            <End Role="TipoCompromisso" EntitySet="TipoCompromissoes" />
-            <End Role="Compromisso" EntitySet="Compromissoes" />
+            <End Role="TipoCompromisso" EntitySet="TipoCompromisso" />
+            <End Role="Compromisso" EntitySet="Compromisso" />
           </AssociationSet>
           <AssociationSet Name="FK_Contato_TipoContato" Association="Self.FK_Contato_TipoContato">
-            <End Role="TipoContato" EntitySet="TipoContatoes" />
-            <End Role="Contato" EntitySet="Contatoes" />
+            <End Role="TipoContato" EntitySet="TipoContato" />
+            <End Role="Contato" EntitySet="Contato" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -233,8 +233,8 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="meivorts_validacaoModelStoreContainer" CdmEntityContainer="meivortsEntities">
-          <EntitySetMapping Name="Compromissoes">
+        <EntityContainerMapping StorageEntityContainer="meivorts_validacaoModelStoreContainer" CdmEntityContainer="meivorts_validacaoEntities1">
+          <EntitySetMapping Name="Compromisso">
             <EntityTypeMapping TypeName="meivorts_validacaoModel.Compromisso">
               <MappingFragment StoreEntitySet="Compromisso">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -251,7 +251,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Contatoes">
+          <EntitySetMapping Name="Contato">
             <EntityTypeMapping TypeName="meivorts_validacaoModel.Contato">
               <MappingFragment StoreEntitySet="Contato">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -268,7 +268,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TipoCompromissoes">
+          <EntitySetMapping Name="TipoCompromisso">
             <EntityTypeMapping TypeName="meivorts_validacaoModel.TipoCompromisso">
               <MappingFragment StoreEntitySet="TipoCompromisso">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -279,7 +279,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="TipoContatoes">
+          <EntitySetMapping Name="TipoContato">
             <EntityTypeMapping TypeName="meivorts_validacaoModel.TipoContato">
               <MappingFragment StoreEntitySet="TipoContato">
                 <ScalarProperty Name="ID" ColumnName="ID" />
@@ -304,7 +304,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

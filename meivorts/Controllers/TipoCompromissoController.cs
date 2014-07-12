@@ -18,7 +18,7 @@ namespace meivorts.Controllers
 
         public ActionResult Index()
         {
-            var tipoCompromisso = db.TipoCompromissoes.ToList();
+            var tipoCompromisso = db.TipoCompromisso.ToList();
             return View(tipoCompromisso);
         }
 
@@ -50,7 +50,7 @@ namespace meivorts.Controllers
                 {
                     tipoCompromisso.DataAlteracao = tipoCompromisso.DataCriacao =  DateTime.Now;
 
-                    db.TipoCompromissoes.Add(tipoCompromisso);
+                    db.TipoCompromisso.Add(tipoCompromisso);
                     db.SaveChanges();
 
                     return RedirectToAction("Index");
@@ -71,7 +71,7 @@ namespace meivorts.Controllers
 
         public ActionResult Edit(int id)
         {
-            TipoCompromisso tipoCompromisso = db.TipoCompromissoes.Find(id);
+            TipoCompromisso tipoCompromisso = db.TipoCompromisso.Find(id);
 
             return View(tipoCompromisso);
         }

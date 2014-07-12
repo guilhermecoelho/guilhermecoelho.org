@@ -14,11 +14,15 @@ namespace meivorts.Models
     public class TipoContatoEntity
     {
         public int ID { get; set; }
+
+        [Required(ErrorMessage = "Preencha o campo nome ")]
+        [Display(Name = " Nome ")]
         public string NomeTipoContato { get; set; }
+
         public System.DateTime DataCriacao { get; set; }
         public System.DateTime DataAlteracao { get; set; }
         public bool Excluido { get; set; }
 
-        public virtual ICollection<Contato> Contatoes { get; set; }
+        public virtual ICollection<Contato> Contato { get; set; }
     }
 }

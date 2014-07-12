@@ -117,39 +117,40 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\TipoCompromissoController.cs" />
+    <Compile Include="Controllers\TipoContatoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Compromisso.cs">
-      <DependentUpon>_model.tt</DependentUpon>
+      <DependentUpon>_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\CompromissoEntity.cs" />
     <Compile Include="Models\Contato.cs">
-      <DependentUpon>_model.tt</DependentUpon>
+      <DependentUpon>_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ContatoEntity.cs" />
     <Compile Include="Models\TipoCompromisso.cs">
-      <DependentUpon>_model.tt</DependentUpon>
+      <DependentUpon>_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoCompromissoEntity.cs" />
     <Compile Include="Models\TipoContato.cs">
-      <DependentUpon>_model.tt</DependentUpon>
+      <DependentUpon>_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoContatoEntity.cs" />
-    <Compile Include="Models\_model.Context.cs">
+    <Compile Include="Models\_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>_model.Context.tt</DependentUpon>
+      <DependentUpon>_Model.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\_model.cs">
+    <Compile Include="Models\_Model.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>_model.tt</DependentUpon>
+      <DependentUpon>_Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\_model.Designer.cs">
+    <Compile Include="Models\_Model.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>_model.edmx</DependentUpon>
+      <DependentUpon>_Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -168,22 +169,22 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
-    <EntityDeploy Include="Models\_model.edmx">
+    <EntityDeploy Include="Models\_Model.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>_model.Designer.cs</LastGenOutput>
+      <LastGenOutput>_Model.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\_model.Context.tt">
+    <Content Include="Models\_Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>_model.edmx</DependentUpon>
-      <LastGenOutput>_model.Context.cs</LastGenOutput>
+      <DependentUpon>_Model.edmx</DependentUpon>
+      <LastGenOutput>_Model.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\_model.edmx.diagram">
-      <DependentUpon>_model.edmx</DependentUpon>
+    <Content Include="Models\_Model.edmx.diagram">
+      <DependentUpon>_Model.edmx</DependentUpon>
     </Content>
-    <Content Include="Models\_model.tt">
+    <Content Include="Models\_Model.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>_model.edmx</DependentUpon>
-      <LastGenOutput>_model.cs</LastGenOutput>
+      <DependentUpon>_Model.edmx</DependentUpon>
+      <LastGenOutput>_Model.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -204,6 +205,8 @@
     <Content Include="Views\TipoCompromisso\Index.cshtml" />
     <Content Include="Views\TipoCompromisso\Create.cshtml" />
     <Content Include="Views\TipoCompromisso\Edit.cshtml" />
+    <Content Include="Views\TipoContato\Index.cshtml" />
+    <Content Include="Views\TipoContato\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

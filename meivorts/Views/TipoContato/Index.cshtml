@@ -1,0 +1,39 @@
+﻿@model IEnumerable<meivorts.Models.TipoContato>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+<div class="col-lg-12">
+    <p>
+        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "tipocontato", new { id = 0 })'">Novo</button>
+    </p>
+    <legend>Tipo Contato</legend>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeTipoContato)
+                </th>
+                <td align="right">Editar Excluir</td>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeTipoContato)
+                    </td>
+                    <td align="right">
+                        <button class="glyphicon glyphicon-pencil" type="button" onclick="location.href='@Url.Action("Create", "tipocontato", new { id = item.ID })'"></button>
+                        <button class="glyphicon glyphicon-trash" name="Excluir" type="button" onclick="location.href='@Url.Action("Delete", "tipocontato", new { id = item.ID })'"></button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

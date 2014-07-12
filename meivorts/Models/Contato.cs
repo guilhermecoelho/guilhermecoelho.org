@@ -16,7 +16,7 @@ namespace meivorts.Models
     {
         public Contato()
         {
-            this.Compromissoes = new HashSet<Compromisso>();
+            this.Compromisso = new HashSet<Compromisso>();
         }
     
         public int ID { get; set; }
@@ -31,7 +31,7 @@ namespace meivorts.Models
         public System.DateTime DataAlteracao { get; set; }
         public bool Excluido { get; set; }
     
-        public virtual ICollection<Compromisso> Compromissoes { get; set; }
+        public virtual ICollection<Compromisso> Compromisso { get; set; }
         public virtual TipoContato TipoContato1 { get; set; }
     }
 }

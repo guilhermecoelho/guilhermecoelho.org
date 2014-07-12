@@ -25,9 +25,9 @@ namespace meivorts.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Compromisso> Compromissoes { get; set; }
-        public virtual DbSet<Contato> Contatoes { get; set; }
-        public virtual DbSet<TipoCompromisso> TipoCompromissoes { get; set; }
-        public virtual DbSet<TipoContato> TipoContatoes { get; set; }
+        public virtual DbSet<Compromisso> Compromisso { get; set; }
+        public virtual DbSet<Contato> Contato { get; set; }
+        public virtual DbSet<TipoCompromisso> TipoCompromisso { get; set; }
+        public virtual DbSet<TipoContato> TipoContato { get; set; }
     }
 }

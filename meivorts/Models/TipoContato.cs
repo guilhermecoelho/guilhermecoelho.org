@@ -16,7 +16,7 @@ namespace meivorts.Models
     {
         public TipoContato()
         {
-            this.Contatoes = new HashSet<Contato>();
+            this.Contato = new HashSet<Contato>();
         }
     
         public int ID { get; set; }
@@ -25,6 +25,6 @@ namespace meivorts.Models
         public System.DateTime DataAlteracao { get; set; }
         public bool Excluido { get; set; }
     
-        public virtual ICollection<Contato> Contatoes { get; set; }
+        public virtual ICollection<Contato> Contato { get; set; }
     }
 }
