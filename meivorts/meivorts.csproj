@@ -204,7 +204,6 @@
     <Content Include="Views\_viewStart.cshtml" />
     <Content Include="Views\TipoCompromisso\Index.cshtml" />
     <Content Include="Views\TipoCompromisso\Create.cshtml" />
-    <Content Include="Views\TipoCompromisso\Edit.cshtml" />
     <Content Include="Views\TipoContato\Index.cshtml" />
     <Content Include="Views\TipoContato\Create.cshtml" />
   </ItemGroup>

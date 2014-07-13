@@ -33,62 +33,48 @@ namespace meivorts.Controllers
         //
         // GET: /TipoCompromisso/Create
 
-        public ActionResult Create()
+        public ActionResult Create(int id)
         {
-            return View();
+            if (id.Equals(0))
+            {
+                return View();
+            }
+            else
+            {
+                TipoCompromisso tipoCompromisso = db.TipoCompromisso.Find(id);
+
+                return View(tipoCompromisso);
+            }
         }
 
         //
         // POST: /TipoCompromisso/Create
 
         [HttpPost]
-        public ActionResult Create(TipoCompromisso tipoCompromisso)
+        public ActionResult Create(int id, TipoCompromisso tipoCompromisso)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    tipoCompromisso.DataAlteracao = tipoCompromisso.DataCriacao =  DateTime.Now;
+                    if (id.Equals(0))
+                    {
+                        tipoCompromisso.DataAlteracao = tipoCompromisso.DataCriacao = DateTime.Now;
 
-                    db.TipoCompromisso.Add(tipoCompromisso);
-                    db.SaveChanges();
+                        db.TipoCompromisso.Add(tipoCompromisso);
+                    }
+                    else
+                    {
+                        TipoCompromisso tipoCompromissoEdit = new TipoCompromisso();
 
-                    return RedirectToAction("Index");
-                }
-                else
-                {
-                    return View(tipoCompromisso);
-                }
-            }
-            catch
-            {
-                return View(tipoCompromisso);
-            }
-        }
+                        tipoCompromissoEdit = db.TipoCompromisso.Find(id);
 
-        //
-        // GET: /TipoCompromisso/Edit/5
+                        tipoCompromissoEdit.DataAlteracao = DateTime.Now;
+                        tipoCompromissoEdit.NomeCompromisso = tipoCompromisso.NomeCompromisso;
 
-        public ActionResult Edit(int id)
-        {
-            TipoCompromisso tipoCompromisso = db.TipoCompromisso.Find(id);
+                        db.Entry(tipoCompromissoEdit).State = System.Data.Entity.EntityState.Modified;
+                    }
 
-            return View(tipoCompromisso);
-        }
-
-        //
-        // POST: /TipoCompromisso/Edit/5
-
-        [HttpPost]
-        public ActionResult Edit(int id, TipoCompromisso tipoCompromisso)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    tipoCompromisso.DataAlteracao = DateTime.Now;
-
-                    db.Entry(tipoCompromisso).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
 
                     return RedirectToAction("Index");

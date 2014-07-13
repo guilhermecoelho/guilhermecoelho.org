@@ -6,26 +6,32 @@
 
 <h2>Create</h2>
 
-@using (Html.BeginForm()) {
+@using (Html.BeginForm())
+{
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <fieldset>
-        <legend>TipoCompromisso</legend>
-
-        <div class="editor-label">
-            @Html.LabelFor(model => model.NomeCompromisso)
-        </div>
-        <div class="editor-field">
-            @Html.EditorFor(model => model.NomeCompromisso)
-            @Html.ValidationMessageFor(model => model.NomeCompromisso)
-        </div>
-        <p>
-            <input type="submit" value="Adicionar" />
-        </p>
-    </fieldset>
+    <p>
+        <button class="glyphicon glyphicon-backward" type="button" onclick="location.href='@Url.Action("")'"></button>
+    </p>
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>Tipo Compromisso</legend>
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.NomeCompromisso)
+                </div>
+                <div class="control">
+                    @Html.EditorFor(model => model.NomeCompromisso)
+                    @Html.ValidationMessageFor(model => model.NomeCompromisso)
+                    <p></p>
+                </div>
+            </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-success" type="submit">Salvar</button>
+                    </div>
+                </div>
+        </fieldset>
+    </form>
 }
-
-<div>
-    @Html.ActionLink("voltar", "Index")
-</div>

@@ -5,27 +5,32 @@
 }
 
 <h2>Index</h2>
+<div class="col-lg-12">
+    <p>
+        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "tipocompromisso", new { id = 0 })'">Novo</button>
+    </p>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeCompromisso)
+                </th>
+                <td align="right">Editar Excluir</td>
+            </tr>
 
-<p>
-    @Html.ActionLink("Novo", "Create")
-</p>
-<table>
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NomeCompromisso)
-        </th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeCompromisso)
+                    </td>
+                    <td align="right">
+                        <button class="glyphicon glyphicon-pencil" type="button" onclick="location.href='@Url.Action("Create", "tipocompromisso", new { id = item.ID })'"></button>
+                        <button class="glyphicon glyphicon-trash" name="Excluir" type="button" onclick="location.href='@Url.Action("Delete", "tipocompromisso", new { id = item.ID })'"></button>
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeCompromisso)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.ID }) |
-            @Html.ActionLink("Excluir", "Delete", new { id=item.ID })
-        </td>
-    </tr>
-}
-
-</table>
+        </table>
+    </div>
+</div>
