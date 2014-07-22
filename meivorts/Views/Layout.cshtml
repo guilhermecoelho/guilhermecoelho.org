@@ -12,9 +12,8 @@
 
     <title>Meivorts - @ViewBag.Title</title>
 
-    <link href="@Url.Content("~/Content/bootstrap.min.css")"
-          rel="stylesheet" />
-
+    <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/Util/Valid.js"></script>
     <style>
         body {
         }
@@ -30,7 +29,7 @@
 
             <div class="navbar-header">
 
-                <a class="navbar-brand" href="#">Teste</a>
+                <a class="navbar-brand" href="#">Meivorts</a>
 
             </div>
 
@@ -39,9 +38,8 @@
                 <ul class="nav navbar-nav">
 
                     <li class="active"><a href="#">Home</a></li>
-                    <li id="menuTipoAgenda">
-                      
-                    </li>
+                    <li id="menuTipoCompromisso"><a href="~/tipocompromisso">Tipo Compromisso</a></li>
+                    <li id="menuTipoContato"><a href="~/tipocontato">Tipo Contato</a></li>
 
                 </ul>
 

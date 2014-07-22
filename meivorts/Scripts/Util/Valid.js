@@ -1,0 +1,3 @@
+function testaJs() {
+    alert("funciona");
+}

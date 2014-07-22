@@ -23,14 +23,6 @@ namespace meivorts.Controllers
         }
 
         //
-        // GET: /TipoCompromisso/Details/5
-
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
-        //
         // GET: /TipoCompromisso/Create
 
         public ActionResult Create(int id)

@@ -1,0 +1,84 @@
+﻿@model meivorts.Models.Contato
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Novo</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <p>
+        <button class="glyphicon glyphicon-backward" type="button" onclick="location.href='@Url.Action("")'"></button>
+    </p>
+    <form class="form-horizontal">
+        <fieldset>
+            <legend>Novo Contato</legend>
+            <div class="control-group">
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Nome)
+                </div>
+                <div class="control">
+                    @Html.EditorFor(model => model.Nome)
+                    @Html.ValidationMessageFor(model => model.Nome)
+                </div>
+                <div class="control-label">
+                    @Html.LabelFor(model => model.TipoContato)
+                </div>
+                <div class="control">
+                    @Html.DropDownList("TipoContato", "selecione um tipo")
+                    @Html.ValidationMessageFor(model => model.TipoContato)
+                </div>
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Observacao)
+                </div>
+                <div class="control">
+                    @Html.EditorFor(model => model.Observacao)
+                    @Html.ValidationMessageFor(model => model.Observacao)
+                </div>
+
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Telefone)
+                </div>
+                <div class="control">
+                    @Html.EditorFor(model => model.Telefone)
+                    @Html.ValidationMessageFor(model => model.Telefone)
+                </div>
+
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Email)
+                </div>
+                <div class="control">
+                    @Html.EditorFor(model => model.Email)
+                    @Html.ValidationMessageFor(model => model.Email)
+                </div>
+
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Facebook)
+                </div>
+                <div class="control">
+                    @Html.EditorFor(model => model.Facebook)
+                    @Html.ValidationMessageFor(model => model.Facebook)
+                </div>
+
+                <div class="control-label">
+                    @Html.LabelFor(model => model.Twitter)
+                </div>
+                <div class="control">
+                    @Html.EditorFor(model => model.Twitter)
+                    @Html.ValidationMessageFor(model => model.Twitter)
+                </div>
+                <p></p>
+            </div>
+            <div class="control-group">
+                <div class="controls">
+                    <button class="btn btn-success" type="submit">Salvar</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+}
+
