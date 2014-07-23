@@ -14,71 +14,73 @@
     <p>
         <button class="glyphicon glyphicon-backward" type="button" onclick="location.href='@Url.Action("")'"></button>
     </p>
-    <form class="form-horizontal">
-        <fieldset>
-            <legend>Novo Contato</legend>
-            <div class="control-group">
-                <div class="control-label">
-                    @Html.LabelFor(model => model.Nome)
-                </div>
-                <div class="control">
-                    @Html.EditorFor(model => model.Nome)
-                    @Html.ValidationMessageFor(model => model.Nome)
-                </div>
-                <div class="control-label">
-                    @Html.LabelFor(model => model.TipoContato)
-                </div>
-                <div class="control">
-                    @Html.DropDownList("TipoContato", "selecione um tipo")
-                    @Html.ValidationMessageFor(model => model.TipoContato)
-                </div>
-                <div class="control-label">
-                    @Html.LabelFor(model => model.Observacao)
-                </div>
-                <div class="control">
-                    @Html.EditorFor(model => model.Observacao)
-                    @Html.ValidationMessageFor(model => model.Observacao)
-                </div>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <fieldset>
+                <legend>Novo Contato</legend>
+                <div class="control-group">
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Nome)
+                    </div>
+                    <div class="control">
+                        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.TipoContato)
+                    </div>
+                    <div class="control">
+                        @Html.DropDownList("TipoContato", null, "selecione um tipo", new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.TipoContato)
+                    </div>
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Observacao)
+                    </div>
+                    <div class="control">
+                        @Html.TextBoxFor(model => model.Observacao, new { @class = "form-control", @style ="Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Observacao)
+                    </div>
 
-                <div class="control-label">
-                    @Html.LabelFor(model => model.Telefone)
-                </div>
-                <div class="control">
-                    @Html.EditorFor(model => model.Telefone)
-                    @Html.ValidationMessageFor(model => model.Telefone)
-                </div>
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Telefone)
+                    </div>
+                    <div class="control">
+                        @Html.TextBoxFor(model => model.Telefone, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Telefone)
+                    </div>
 
-                <div class="control-label">
-                    @Html.LabelFor(model => model.Email)
-                </div>
-                <div class="control">
-                    @Html.EditorFor(model => model.Email)
-                    @Html.ValidationMessageFor(model => model.Email)
-                </div>
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Email)
+                    </div>
+                    <div class="control">
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Email)
+                    </div>
 
-                <div class="control-label">
-                    @Html.LabelFor(model => model.Facebook)
-                </div>
-                <div class="control">
-                    http://www.facebook.com/ @Html.EditorFor(model => model.Facebook)
-                    @Html.ValidationMessageFor(model => model.Facebook)
-                </div>
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Facebook)
+                    </div>
+                    <div class="control">
+                        http://www.facebook.com/ @Html.TextBoxFor(model => model.Facebook, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Facebook)
+                    </div>
 
-                <div class="control-label">
-                    @Html.LabelFor(model => model.Twitter)
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Twitter)
+                    </div>
+                    <div class="control">
+                        https://twitter.com/ @Html.TextBoxFor(model => model.Twitter, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Twitter)
+                    </div>
+                    <p></p>
                 </div>
-                <div class="control">
-                    https://twitter.com/ @Html.EditorFor(model => model.Twitter)
-                    @Html.ValidationMessageFor(model => model.Twitter)
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-success" type="submit">Salvar</button>
+                    </div>
                 </div>
-                <p></p>
+            </fieldset>
             </div>
-            <div class="control-group">
-                <div class="controls">
-                    <button class="btn btn-success" type="submit">Salvar</button>
-                </div>
-            </div>
-        </fieldset>
     </form>
 }
 
