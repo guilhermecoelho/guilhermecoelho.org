@@ -17,7 +17,7 @@ namespace meivorts.Controllers
 
         public ActionResult Index()
         {
-            var contato = db.Contato.Include("TipoContato").ToList();
+            var contato = db.Contato.Include("TipoContato1").ToList();
             return View(contato);
         }
 
@@ -113,6 +113,14 @@ namespace meivorts.Controllers
             {
                 return View();
             }
+        }
+
+        public ActionResult CreateNewMyEntity(string default_value)
+        {
+            Contato contato = new Contato();
+            contato.Facebook = default_value;
+
+            return View(contato);
         }
     }
 }

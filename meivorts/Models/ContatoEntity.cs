@@ -21,7 +21,6 @@ namespace meivorts.Models
         public string Nome { get; set; }
 
         [Display(Name = " Observação ")]
-        
         public string Observacao { get; set; }
 
         public string Telefone { get; set; }
