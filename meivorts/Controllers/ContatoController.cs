@@ -100,7 +100,7 @@ namespace meivorts.Controllers
         //
         // POST: /Contato/Delete/5
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

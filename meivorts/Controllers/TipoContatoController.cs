@@ -91,38 +91,37 @@ namespace meivorts.Controllers
             }
         }
 
-        //
-        // GET: /TipoContato/Edit/5
-
-    
-
-        //
-        // GET: /TipoContato/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /TipoContato/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, TipoContato tipoContato)
+        [HttpGet]
+        public JsonResult Delete(int id)
         {
             try
             {
+                TipoContato tipoContato = new TipoContato();
+
+                tipoContato = db.TipoContato.Find(id);
+
                 tipoContato.DataAlteracao = DateTime.Now;
                 tipoContato.Excluido = true;
 
                 db.Entry(tipoContato).State = System.Data.Entity.EntityState.Modified;
                 db.SaveChanges();
 
-                return RedirectToAction("Index");
+                return Json(
+                    new
+                    {
+                    OK = true,
+                    Mensagem = "Item excluido com sucesso"},
+                    JsonRequestBehavior.AllowGet);
             }
             catch
             {
-                return View();
+                return Json(
+                   new
+                   {
+                       OK = false,
+                       Mensagem = "erro ao tentar excluir item"
+                   },
+                   JsonRequestBehavior.AllowGet);
             }
         }
     }
