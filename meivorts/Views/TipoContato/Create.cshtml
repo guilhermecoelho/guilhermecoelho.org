@@ -12,27 +12,29 @@
         @Html.ValidationSummary(true)
 
         <p>
-            <button class="glyphicon glyphicon-backward" type="button" onclick="location.href='@Url.Action("")'"></button>
+            <button class="glyphicon glyphicon-backward btn-sm btn btn-primary" type="button" onclick="location.href='@Url.Action("")'"> Voltar</button>
         </p>
-        <form class="form-horizontal">
-            <fieldset>
-                <legend>Tipo Contato</legend>
-                <div class="control-group">
-                    <div class="control-label">
-                        @Html.LabelFor(model => model.NomeTipoContato)
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <fieldset>
+                    <legend>Tipo Contato</legend>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.NomeTipoContato)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.NomeTipoContato, new { @class = "form-control", @style = "Width:20%" })
+                            @Html.ValidationMessageFor(model => model.NomeTipoContato)
+                            <p></p>
+                        </div>
                     </div>
-                    <div class="controls">
-                        @Html.EditorFor(model => model.NomeTipoContato, string.Empty, new { @class = "input-xlarge" })
-                        @Html.ValidationMessageFor(model => model.NomeTipoContato)
-                        <p></p>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button class="btn btn-success" type="submit">Salvar</button>
+                        </div>
                     </div>
-                </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <button class="btn btn-success" type="submit" >Salvar</button>
-                    </div>
-                </div>
-            </fieldset>
+                </fieldset>
+            </div>
         </form>
     }
 </div>

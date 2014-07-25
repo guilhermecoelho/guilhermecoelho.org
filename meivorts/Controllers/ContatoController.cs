@@ -17,7 +17,7 @@ namespace meivorts.Controllers
 
         public ActionResult Index()
         {
-            var contato = db.Contato.Include("TipoContato1").ToList();
+            var contato = db.Contato.Include("TipoContato1").Where(x => x.Excluido == false).ToList();
             return View(contato);
         }
 
@@ -28,12 +28,13 @@ namespace meivorts.Controllers
         {
             if (id.Equals(0))
             {
-                ViewBag.TipoContato = new SelectList(db.TipoContato, "ID", "NomeTipoContato");
+                ViewBag.TipoContato = new SelectList(db.TipoContato.Where(x => x.Excluido == false), "ID", "NomeTipoContato");
                 return View();
             }
             else
             {
                 Contato contato = db.Contato.Find(id);
+                ViewBag.TipoContato = new SelectList(db.TipoContato.Where(x => x.Excluido == false), "ID", "NomeTipoContato", contato.TipoContato);
 
                 return View(contato);
             }
@@ -89,38 +90,39 @@ namespace meivorts.Controllers
             }
         }
 
-        //
-        // GET: /Contato/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /Contato/Delete/5
-
         [HttpGet]
-        public ActionResult Delete(int id, FormCollection collection)
+        public JsonResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
+                Contato contato = new Contato();
 
-                return RedirectToAction("Index");
+                contato = db.Contato.Find(id);
+
+                contato.DataAlteracao = DateTime.Now;
+                contato.Excluido = true;
+
+                db.Entry(contato).State = System.Data.Entity.EntityState.Modified;
+                db.SaveChanges();
+
+                return Json(
+                    new
+                    {
+                        OK = true,
+                        Mensagem = "Item excluido com sucesso"
+                    },
+                    JsonRequestBehavior.AllowGet);
             }
             catch
             {
-                return View();
+                return Json(
+                   new
+                   {
+                       OK = false,
+                       Mensagem = "erro ao tentar excluir item"
+                   },
+                   JsonRequestBehavior.AllowGet);
             }
-        }
-
-        public ActionResult CreateNewMyEntity(string default_value)
-        {
-            Contato contato = new Contato();
-            contato.Facebook = default_value;
-
-            return View(contato);
         }
     }
 }

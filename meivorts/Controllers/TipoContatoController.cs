@@ -15,9 +15,8 @@ namespace meivorts.Controllers
 
         public ActionResult Index()
         {
-            var tipoContato = db.TipoContato.ToList();
+            var tipoContato = db.TipoContato.Where(x => x.Excluido == false).ToList();
             return View(tipoContato);
-
         }
 
         //
@@ -98,20 +97,36 @@ namespace meivorts.Controllers
             {
                 TipoContato tipoContato = new TipoContato();
 
-                tipoContato = db.TipoContato.Find(id);
+                //verifica se o tipoContato está sendo usado por algum contato não excluido
+                int hasTipoContatoInContato = db.Contato.Where(x => x.TipoContato == id && x.Excluido == false).Count();
+                if (hasTipoContatoInContato.Equals(0))
+                {
+                    tipoContato = db.TipoContato.Find(id);
 
-                tipoContato.DataAlteracao = DateTime.Now;
-                tipoContato.Excluido = true;
+                    tipoContato.DataAlteracao = DateTime.Now;
+                    tipoContato.Excluido = true;
 
-                db.Entry(tipoContato).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                    db.Entry(tipoContato).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
 
-                return Json(
-                    new
-                    {
-                    OK = true,
-                    Mensagem = "Item excluido com sucesso"},
-                    JsonRequestBehavior.AllowGet);
+                    return Json(
+                        new
+                        {
+                            OK = true,
+                            Mensagem = "Item excluido com sucesso"
+                        },
+                        JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(
+                        new
+                        {
+                            OK = false,
+                            Mensagem = "Exclusão não permitida, existem contatos usando este item"
+                        },
+                        JsonRequestBehavior.AllowGet);
+                }
             }
             catch
             {

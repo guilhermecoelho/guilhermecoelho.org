@@ -11,13 +11,15 @@
     </p>
     <legend>Contatos</legend>
     <div class="table-responsive" >
-        <table class ="table table-striped">
+        @if (Model.Count() > 0)
+        {
+            <table class ="table table-striped ">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.Nome)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Observacao)
+                    @Html.DisplayNameFor(model => model.TipoContato)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Telefone)
@@ -32,28 +34,19 @@
                     @Html.DisplayNameFor(model => model.Twitter)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.TipoContato)
+                    @Html.DisplayNameFor(model => model.Observacao)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DataCriacao)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.DataAlteracao)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Excluido)
-                </th>
-                <td align="right"><b>Editar Excluir</b></td>
+                <th></th>
             </tr>
 
-            @foreach (var item in Model)
+                        @foreach (var item in Model)
             {
                 <tr>
                     <td>
                         @Html.DisplayFor(modelItem => item.Nome)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Observacao)
+                        @Html.DisplayFor(modelItem => item.TipoContato1.NomeTipoContato)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Telefone)
@@ -68,23 +61,16 @@
                         @Html.DisplayFor(modelItem => item.Twitter)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.TipoContato)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataCriacao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataAlteracao)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Excluido)
+                        @Html.DisplayFor(modelItem => item.Observacao)
                     </td>
                     <td align="right">
-                        <button class="glyphicon glyphicon-pencil" type="button" onclick="location.href='@Url.Action("Create", "tipocontato", new { id = item.ID })'"></button>
-                        <button class="glyphicon glyphicon-trash" name="Excluir" type="button" onclick="location.href='@Url.Action("Delete", "tipocontato", new { id = item.ID })'"></button>
+                        <button class="glyphicon glyphicon-pencil btn-sm btn btn-success" type="button" onclick="location.href='@Url.Action("Create", "contato", new { id = item.ID })'"> Editar</button>
+                        <button class="glyphicon glyphicon-trash btn-sm btn btn-danger" name="Excluir" type="button" onclick="Excluir(@Html.DisplayFor(modelItem => item.ID), 'contato')"> Excluir</button>
                     </td>
                 </tr>
             }
-
         </table>
+        }
+        
     </div>
+</div>

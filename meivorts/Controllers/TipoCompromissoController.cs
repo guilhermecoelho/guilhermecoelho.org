@@ -18,7 +18,7 @@ namespace meivorts.Controllers
 
         public ActionResult Index()
         {
-            var tipoCompromisso = db.TipoCompromisso.ToList();
+            var tipoCompromisso = db.TipoCompromisso.Where(model => model.Excluido == false).ToList();
             return View(tipoCompromisso);
         }
 
@@ -81,34 +81,58 @@ namespace meivorts.Controllers
                 return View(tipoCompromisso);
             }
         }
-
-        //
-        // GET: /TipoCompromisso/Delete/5
-
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        //
-        // POST: /TipoCompromisso/Delete/5
-
-        [HttpPost]
-        public ActionResult Delete(int id, TipoCompromisso tipoCompromisso)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [HttpGet]
+        public JsonResult Delete(int id)
         {
             try
             {
-                tipoCompromisso.DataAlteracao = DateTime.Now;
-                tipoCompromisso.Excluido = true;
+                TipoCompromisso tipoCompromisso = new TipoCompromisso();
 
-                db.Entry(tipoCompromisso).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                //verifica se o tipoContato está sendo usado por algum contato não excluido
+                int hasTipoCompromissoInCompromisso = db.Compromisso.Where(x => x.TipoCompromisso == id && x.Excluido == false).Count();
+                if (hasTipoCompromissoInCompromisso.Equals(0))
+                {
+                    tipoCompromisso = db.TipoCompromisso.Find(id);
 
-                return RedirectToAction("Index");
+                    tipoCompromisso.DataAlteracao = DateTime.Now;
+                    tipoCompromisso.Excluido = true;
+
+                    db.Entry(tipoCompromisso).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+
+                    return Json(
+                        new
+                        {
+                            OK = true,
+                            Mensagem = "Item excluido com sucesso"
+                        },
+                        JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(
+                        new
+                        {
+                            OK = false,
+                            Mensagem = "Exclusão não permitida, existem compromissos usando este item"
+                        },
+                        JsonRequestBehavior.AllowGet);
+                }
             }
             catch
             {
-                return View();
+                return Json(
+                   new
+                   {
+                       OK = false,
+                       Mensagem = "erro ao tentar excluir item"
+                   },
+                   JsonRequestBehavior.AllowGet);
             }
         }
     }
