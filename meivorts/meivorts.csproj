@@ -122,7 +122,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\CompromissoController.cs" />
     <Compile Include="Controllers\ContatoController.cs" />
+    <Compile Include="Controllers\StatusCompromissoController.cs" />
     <Compile Include="Controllers\TipoCompromissoController.cs" />
     <Compile Include="Controllers\TipoContatoController.cs" />
     <Compile Include="Global.asax.cs">
@@ -136,6 +138,10 @@
       <DependentUpon>_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ContatoEntity.cs" />
+    <Compile Include="Models\StatusCompromisso.cs">
+      <DependentUpon>_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\StatusCompromissoEntity.cs" />
     <Compile Include="Models\TipoCompromisso.cs">
       <DependentUpon>_Model.tt</DependentUpon>
     </Compile>
@@ -224,6 +230,10 @@
     <Content Include="Views\TipoContato\Create.cshtml" />
     <Content Include="Views\Contato\Index.cshtml" />
     <Content Include="Views\Contato\Create.cshtml" />
+    <Content Include="Views\StatusCompromisso\Index.cshtml" />
+    <Content Include="Views\StatusCompromisso\Create.cshtml" />
+    <Content Include="Views\Compromisso\Index.cshtml" />
+    <Content Include="Views\Compromisso\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -27,6 +27,7 @@ namespace meivorts.Models
     
         public virtual DbSet<Compromisso> Compromisso { get; set; }
         public virtual DbSet<Contato> Contato { get; set; }
+        public virtual DbSet<StatusCompromisso> StatusCompromisso { get; set; }
         public virtual DbSet<TipoCompromisso> TipoCompromisso { get; set; }
         public virtual DbSet<TipoContato> TipoContato { get; set; }
     }

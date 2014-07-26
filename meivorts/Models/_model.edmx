@@ -9,17 +9,17 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="Descricao" Type="varchar" MaxLength="250" />
           <Property Name="Data" Type="datetime" Nullable="false" />
           <Property Name="Hora" Type="time" Precision="7" Nullable="false" />
           <Property Name="TipoCompromisso" Type="int" Nullable="false" />
           <Property Name="Contato" Type="int" Nullable="false" />
+          <Property Name="StatusCompromisso" Type="int" Nullable="false" />
           <Property Name="DataCriacao" Type="datetime" Nullable="false" />
           <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
           <Property Name="Excluido" Type="bit" Nullable="false" />
-          <Property Name="Ativo" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Contato">
           <Key>
@@ -33,6 +33,16 @@
           <Property Name="Facebook" Type="varchar" MaxLength="50" />
           <Property Name="Twitter" Type="varchar" MaxLength="50" />
           <Property Name="TipoContato" Type="int" Nullable="false" />
+          <Property Name="DataCriacao" Type="datetime" Nullable="false" />
+          <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
+          <Property Name="Excluido" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusCompromisso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="DataCriacao" Type="datetime" Nullable="false" />
           <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
           <Property Name="Excluido" Type="bit" Nullable="false" />
@@ -69,6 +79,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Compromisso_StatusCompromisso">
+          <End Role="StatusCompromisso" Type="Self.StatusCompromisso" Multiplicity="1" />
+          <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusCompromisso">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Compromisso">
+              <PropertyRef Name="StatusCompromisso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Compromisso_TipoCompromisso">
           <End Role="TipoCompromisso" Type="Self.TipoCompromisso" Multiplicity="1" />
           <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
@@ -96,10 +118,15 @@
         <EntityContainer Name="meivorts_validacaoModelStoreContainer">
           <EntitySet Name="Compromisso" EntityType="Self.Compromisso" Schema="meivorts" store:Type="Tables" />
           <EntitySet Name="Contato" EntityType="Self.Contato" Schema="meivorts" store:Type="Tables" />
+          <EntitySet Name="StatusCompromisso" EntityType="Self.StatusCompromisso" Schema="meivorts" store:Type="Tables" />
           <EntitySet Name="TipoCompromisso" EntityType="Self.TipoCompromisso" Schema="meivorts" store:Type="Tables" />
           <EntitySet Name="TipoContato" EntityType="Self.TipoContato" Schema="meivorts" store:Type="Tables" />
           <AssociationSet Name="FK_Compromisso_Contato" Association="Self.FK_Compromisso_Contato">
             <End Role="Contato" EntitySet="Contato" />
+            <End Role="Compromisso" EntitySet="Compromisso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compromisso_StatusCompromisso" Association="Self.FK_Compromisso_StatusCompromisso">
+            <End Role="StatusCompromisso" EntitySet="StatusCompromisso" />
             <End Role="Compromisso" EntitySet="Compromisso" />
           </AssociationSet>
           <AssociationSet Name="FK_Compromisso_TipoCompromisso" Association="Self.FK_Compromisso_TipoCompromisso">
@@ -120,18 +147,19 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Nome" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Descricao" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="Data" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Hora" Type="Time" Nullable="false" Precision="7" />
           <Property Name="TipoCompromisso" Type="Int32" Nullable="false" />
           <Property Name="Contato" Type="Int32" Nullable="false" />
+          <Property Name="StatusCompromisso" Type="Int32" Nullable="false" />
           <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Excluido" Type="Boolean" Nullable="false" />
-          <Property Name="Ativo" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Contato1" Relationship="Self.FK_Compromisso_Contato" FromRole="Compromisso" ToRole="Contato" />
+          <NavigationProperty Name="StatusCompromisso1" Relationship="Self.FK_Compromisso_StatusCompromisso" FromRole="Compromisso" ToRole="StatusCompromisso" />
           <NavigationProperty Name="TipoCompromisso1" Relationship="Self.FK_Compromisso_TipoCompromisso" FromRole="Compromisso" ToRole="TipoCompromisso" />
         </EntityType>
         <EntityType Name="Contato">
@@ -151,6 +179,17 @@
           <Property Name="Excluido" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Compromisso" Relationship="Self.FK_Compromisso_Contato" FromRole="Contato" ToRole="Compromisso" />
           <NavigationProperty Name="TipoContato1" Relationship="Self.FK_Contato_TipoContato" FromRole="Contato" ToRole="TipoContato" />
+        </EntityType>
+        <EntityType Name="StatusCompromisso">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Excluido" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Compromisso" Relationship="Self.FK_Compromisso_StatusCompromisso" FromRole="StatusCompromisso" ToRole="Compromisso" />
         </EntityType>
         <EntityType Name="TipoCompromisso">
           <Key>
@@ -186,6 +225,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Compromisso_StatusCompromisso">
+          <End Role="StatusCompromisso" Type="Self.StatusCompromisso" Multiplicity="1" />
+          <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusCompromisso">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Compromisso">
+              <PropertyRef Name="StatusCompromisso" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Compromisso_TipoCompromisso">
           <End Role="TipoCompromisso" Type="Self.TipoCompromisso" Multiplicity="1" />
           <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
@@ -210,13 +261,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="meivorts_validacaoEntities1" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="meivortsEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Compromisso" EntityType="Self.Compromisso" />
           <EntitySet Name="Contato" EntityType="Self.Contato" />
+          <EntitySet Name="StatusCompromisso" EntityType="Self.StatusCompromisso" />
           <EntitySet Name="TipoCompromisso" EntityType="Self.TipoCompromisso" />
           <EntitySet Name="TipoContato" EntityType="Self.TipoContato" />
           <AssociationSet Name="FK_Compromisso_Contato" Association="Self.FK_Compromisso_Contato">
             <End Role="Contato" EntitySet="Contato" />
+            <End Role="Compromisso" EntitySet="Compromisso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compromisso_StatusCompromisso" Association="Self.FK_Compromisso_StatusCompromisso">
+            <End Role="StatusCompromisso" EntitySet="StatusCompromisso" />
             <End Role="Compromisso" EntitySet="Compromisso" />
           </AssociationSet>
           <AssociationSet Name="FK_Compromisso_TipoCompromisso" Association="Self.FK_Compromisso_TipoCompromisso">
@@ -233,7 +289,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="meivorts_validacaoModelStoreContainer" CdmEntityContainer="meivorts_validacaoEntities1">
+        <EntityContainerMapping StorageEntityContainer="meivorts_validacaoModelStoreContainer" CdmEntityContainer="meivortsEntities">
           <EntitySetMapping Name="Compromisso">
             <EntityTypeMapping TypeName="meivorts_validacaoModel.Compromisso">
               <MappingFragment StoreEntitySet="Compromisso">
@@ -244,10 +300,10 @@
                 <ScalarProperty Name="Hora" ColumnName="Hora" />
                 <ScalarProperty Name="TipoCompromisso" ColumnName="TipoCompromisso" />
                 <ScalarProperty Name="Contato" ColumnName="Contato" />
+                <ScalarProperty Name="StatusCompromisso" ColumnName="StatusCompromisso" />
                 <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
                 <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
                 <ScalarProperty Name="Excluido" ColumnName="Excluido" />
-                <ScalarProperty Name="Ativo" ColumnName="Ativo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -262,6 +318,17 @@
                 <ScalarProperty Name="Facebook" ColumnName="Facebook" />
                 <ScalarProperty Name="Twitter" ColumnName="Twitter" />
                 <ScalarProperty Name="TipoContato" ColumnName="TipoContato" />
+                <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
+                <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
+                <ScalarProperty Name="Excluido" ColumnName="Excluido" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusCompromisso">
+            <EntityTypeMapping TypeName="meivorts_validacaoModel.StatusCompromisso">
+              <MappingFragment StoreEntitySet="StatusCompromisso">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Nome" ColumnName="Nome" />
                 <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
                 <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
                 <ScalarProperty Name="Excluido" ColumnName="Excluido" />

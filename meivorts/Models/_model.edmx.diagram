@@ -4,12 +4,14 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b47f89f537454bc9b746053240032da5" Name="Diagram1">
+      <Diagram DiagramId="3b9feadafff54b9b981ec4b09d1a984b" Name="Diagram1">
         <EntityTypeShape EntityType="meivorts_validacaoModel.Compromisso" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="meivorts_validacaoModel.Contato" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="meivorts_validacaoModel.TipoCompromisso" Width="1.5" PointX="3" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="meivorts_validacaoModel.TipoContato" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="meivorts_validacaoModel.Contato" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="meivorts_validacaoModel.StatusCompromisso" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="meivorts_validacaoModel.TipoCompromisso" Width="1.5" PointX="3" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="meivorts_validacaoModel.TipoContato" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
         <AssociationConnector Association="meivorts_validacaoModel.FK_Compromisso_Contato" ManuallyRouted="false" />
+        <AssociationConnector Association="meivorts_validacaoModel.FK_Compromisso_StatusCompromisso" ManuallyRouted="false" />
         <AssociationConnector Association="meivorts_validacaoModel.FK_Compromisso_TipoCompromisso" ManuallyRouted="false" />
         <AssociationConnector Association="meivorts_validacaoModel.FK_Contato_TipoContato" ManuallyRouted="false" />
       </Diagram>

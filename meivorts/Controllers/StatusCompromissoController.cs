@@ -7,41 +7,44 @@ using System.Web.Mvc;
 
 namespace meivorts.Controllers
 {
-    public class TipoContatoController : Controller
+    public class StatusCompromissoController : Controller
     {
         private meivortsEntities db = new meivortsEntities();
         //
-        // GET: /TipoContato/
+        // GET: /StatusCompromisso/
 
         public ActionResult Index()
         {
-            var tipoContato = db.TipoContato.Where(x => x.Excluido == false).ToList();
-            return View(tipoContato);
-        }
+            
+            var statusCompromisso = db.StatusCompromisso.Where(x => x.Excluido == false).ToList();
 
-        // GET: /TipoContato/Create
-
-        public ActionResult Create(int id)
-        {
-            TipoContato tipoContato = new TipoContato();
-
-            if (id.Equals(0))
-            {
-                tipoContato.ID = 0;
-            }
-            else
-            {
-                tipoContato = db.TipoContato.Find(id);
-            }
-
-            return View(tipoContato);
+            return View(statusCompromisso);
         }
 
         //
-        // POST: /TipoContato/Create
+        // GET: /StatusCompromisso/Create
+
+        public ActionResult Create(int id)
+        {
+            StatusCompromisso statusCompromisso = new StatusCompromisso();
+
+            if (id.Equals(0))
+            {
+                statusCompromisso.ID = 0;
+            }
+            else
+            {
+                statusCompromisso = db.StatusCompromisso.Find(id);
+            }
+
+            return View(statusCompromisso);
+        }
+
+        //
+        // POST: /StatusCompromisso/Create
 
         [HttpPost]
-        public ActionResult Create(int id, TipoContato tipoContato)
+        public ActionResult Create(int id, StatusCompromisso statusCompromisso)
         {
             try
             {
@@ -50,20 +53,20 @@ namespace meivorts.Controllers
 
                     if (id.Equals(0))
                     {
-                        tipoContato.DataAlteracao = tipoContato.DataCriacao = DateTime.Now;
+                        statusCompromisso.DataAlteracao = statusCompromisso.DataCriacao = DateTime.Now;
 
-                        db.TipoContato.Add(tipoContato);
+                        db.StatusCompromisso.Add(statusCompromisso);
                     }
                     else
                     {
-                        TipoContato tipoContatoEdit = new TipoContato();
+                        StatusCompromisso statusCompromissoEdit = new StatusCompromisso();
 
-                        tipoContatoEdit = db.TipoContato.Find(id);
+                        statusCompromissoEdit = db.StatusCompromisso.Find(id);
 
-                        tipoContatoEdit.DataAlteracao = DateTime.Now;
-                        tipoContatoEdit.NomeTipoContato = tipoContato.NomeTipoContato;
+                        statusCompromissoEdit.DataAlteracao = DateTime.Now;
+                        statusCompromissoEdit.Nome = statusCompromisso.Nome;
 
-                        db.Entry(tipoContatoEdit).State = System.Data.Entity.EntityState.Modified;
+                        db.Entry(statusCompromissoEdit).State = System.Data.Entity.EntityState.Modified;
 
                     }
                     db.SaveChanges();
@@ -72,12 +75,12 @@ namespace meivorts.Controllers
                 }
                 else
                 {
-                    return View(tipoContato);
+                    return View(statusCompromisso);
                 }
             }
             catch
             {
-                return View(tipoContato);
+                return View(statusCompromisso);
             }
         }
 
@@ -86,18 +89,18 @@ namespace meivorts.Controllers
         {
             try
             {
-                TipoContato tipoContato = new TipoContato();
+                StatusCompromisso statusCompromisso = new StatusCompromisso();
 
                 //verifica se o tipoContato está sendo usado por algum contato não excluido
-                int hasTipoContatoInContato = db.Contato.Where(x => x.TipoContato == id && x.Excluido == false).Count();
-                if (hasTipoContatoInContato.Equals(0))
+                int hasStatusInCompromisso = db.Compromisso.Where(x => x.StatusCompromisso == id && x.Excluido == false).Count();
+                if (hasStatusInCompromisso.Equals(0))
                 {
-                    tipoContato = db.TipoContato.Find(id);
+                    statusCompromisso = db.StatusCompromisso.Find(id);
 
-                    tipoContato.DataAlteracao = DateTime.Now;
-                    tipoContato.Excluido = true;
+                    statusCompromisso.DataAlteracao = DateTime.Now;
+                    statusCompromisso.Excluido = true;
 
-                    db.Entry(tipoContato).State = System.Data.Entity.EntityState.Modified;
+                    db.Entry(statusCompromisso).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
 
                     return Json(

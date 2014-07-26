@@ -1,0 +1,88 @@
+﻿@model meivorts.Models.Compromisso
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <p>
+        <button class="glyphicon glyphicon-backward btn-sm btn btn-primary" type="button" onclick="location.href='@Url.Action("")'"> Voltar</button>
+    </p>
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+
+            <fieldset>
+                <legend>Compromisso</legend>
+                <div class="control-group">
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Nome)
+                    </div>
+                    <div class="control">
+                        @Html.TextBoxFor(model => model.Nome, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Nome)
+                    </div>
+
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Descricao)
+                    </div>
+                    <div class="control">
+                        @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Descricao)
+                    </div>
+
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Data)
+                    </div>
+                    <div class="control">
+                        @Html.TextBoxFor(model => model.Data, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Data)
+                    </div>
+
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Hora)
+                    </div>
+                    <div class="control">
+                        @Html.TextBoxFor(model => model.Hora, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Hora)
+                    </div>
+
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.TipoCompromisso)
+                    </div>
+                    <div class="control">
+                        @Html.DropDownList("TipoCompromisso", null, "selecione um tipo", new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.TipoCompromisso)
+                    </div>
+
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Contato)
+                    </div>
+                    <div class="control">
+                        @Html.DropDownList("Contato", null, "selecione um Contato", new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Contato)
+                    </div>
+
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.StatusCompromisso)
+                    </div>
+                    <div class="control">
+                        @Html.DropDownList("StatusCompromisso", null, "selecione um Status", new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.StatusCompromisso)
+                    </div>
+                    <p></p>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-success" type="submit">Salvar</button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+}

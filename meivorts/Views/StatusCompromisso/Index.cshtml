@@ -1,0 +1,44 @@
+﻿@model IEnumerable<meivorts.Models.StatusCompromisso>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<div class="col-lg-12">
+    <p>
+        <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "statuscompromisso", new { id = 0 })'">Novo</button>
+    </p>
+    <legend>Status Compromisso</legend>
+    <div class="table-responsive">
+        @if (Model.Count() > 0)
+        {
+            <table class="table table-striped">
+
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Nome)
+                    </th>
+                    <th></th>
+                </tr>
+
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Nome)
+                        </td>
+                        <td align="right">
+                            <button class="glyphicon glyphicon-pencil btn-sm btn btn-success" type="button" onclick="location.href='@Url.Action("Create", "statuscompromisso", new { id = item.ID })'"> Editar</button>
+                            <button class="glyphicon glyphicon-trash btn-sm btn btn-danger" name="Excluir" type="button" onclick="Excluir(@Html.DisplayFor(modelItem => item.ID), 'statuscompromisso')"> Excluir</button>
+                        </td>
+                    </tr>
+                }
+            </table>
+        }
+    </div>
+</div>
