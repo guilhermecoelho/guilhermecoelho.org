@@ -9,13 +9,20 @@ namespace meivorts.Controllers
 {
     public class StatusCompromissoController : Controller
     {
+        #region objects
+
         private meivortsEntities db = new meivortsEntities();
+        
+        #endregion
+
+        #region CRUD
+
         //
         // GET: /StatusCompromisso/
 
         public ActionResult Index()
         {
-            
+
             var statusCompromisso = db.StatusCompromisso.Where(x => x.Excluido == false).ToList();
 
             return View(statusCompromisso);
@@ -133,5 +140,7 @@ namespace meivorts.Controllers
                    JsonRequestBehavior.AllowGet);
             }
         }
+
+        #endregion
     }
 }

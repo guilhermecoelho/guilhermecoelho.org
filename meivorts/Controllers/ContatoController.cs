@@ -10,7 +10,13 @@ namespace meivorts.Controllers
 {
     public class ContatoController : Controller
     {
+        #region objects
+
         private meivortsEntities db = new meivortsEntities();
+
+        #endregion
+
+        #region CRUD
 
         //
         // GET: /Contato/
@@ -26,15 +32,18 @@ namespace meivorts.Controllers
 
         public ActionResult Create(int id)
         {
+            Contato contato = new Contato();
+
             if (id.Equals(0))
             {
-                ViewBag.TipoContato = new SelectList(db.TipoContato.Where(x => x.Excluido == false), "ID", "NomeTipoContato");
+                populaDropDowns(contato);
+
                 return View();
             }
             else
             {
-                Contato contato = db.Contato.Find(id);
-                ViewBag.TipoContato = new SelectList(db.TipoContato.Where(x => x.Excluido == false), "ID", "NomeTipoContato", contato.TipoContato);
+                contato = db.Contato.Find(id);
+                populaDropDowns(contato);
 
                 return View(contato);
             }
@@ -80,12 +89,15 @@ namespace meivorts.Controllers
                 }
                 else
                 {
-                    ViewBag.TipoContato = new SelectList(db.TipoContato, "ID", "NomeTipoContato", contato.TipoContato);
+                    populaDropDowns(contato);
+
                     return View(contato);
                 }
             }
             catch
             {
+                populaDropDowns(contato);
+
                 return View(contato);
             }
         }
@@ -124,5 +136,20 @@ namespace meivorts.Controllers
                    JsonRequestBehavior.AllowGet);
             }
         }
+
+        #endregion
+
+        #region methods
+
+        /// <summary>
+        /// Populate dropdowns 
+        /// </summary>
+        /// <param name="compromisso">Contato object</param>
+        private void populaDropDowns(Contato contato)
+        {
+            ViewBag.TipoContato = new SelectList(db.TipoContato.Where(x => x.Excluido == false), "ID", "NomeTipoContato", contato.TipoContato);
+        }
+
+        #endregion
     }
 }

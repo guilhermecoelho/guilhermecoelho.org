@@ -9,7 +9,14 @@ namespace meivorts.Controllers
 {
     public class TipoContatoController : Controller
     {
+        #region objects
+
         private meivortsEntities db = new meivortsEntities();
+
+        #endregion
+
+        #region CRUD
+
         //
         // GET: /TipoContato/
 
@@ -130,5 +137,7 @@ namespace meivorts.Controllers
                    JsonRequestBehavior.AllowGet);
             }
         }
+
+        #endregion
     }
 }

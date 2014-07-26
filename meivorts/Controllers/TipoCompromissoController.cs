@@ -10,9 +10,13 @@ namespace meivorts.Controllers
 {
     public class TipoCompromissoController : Controller
     {
+        #region objects
 
         private meivortsEntities db = new meivortsEntities();
 
+        #endregion
+
+        #region CRUD
         //
         // GET: /TipoCompromisso/
 
@@ -135,5 +139,6 @@ namespace meivorts.Controllers
                    JsonRequestBehavior.AllowGet);
             }
         }
+        #endregion
     }
 }

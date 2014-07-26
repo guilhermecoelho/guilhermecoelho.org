@@ -9,8 +9,13 @@ namespace meivorts.Controllers
 {
     public class CompromissoController : Controller
     {
+        #region objects
+
         private meivortsEntities db = new meivortsEntities();
 
+        #endregion
+
+        #region CRUD
         //
         // GET: /Compromisso/
 
@@ -24,21 +29,19 @@ namespace meivorts.Controllers
 
         public ActionResult Create(int id)
         {
+            Compromisso compromisso = new Compromisso();
+
             if (id.Equals(0))
             {
-                ViewBag.Contato = new SelectList(db.Contato.Where(x => x.Excluido == false), "ID", "Nome");
-                ViewBag.StatusCompromisso = new SelectList(db.StatusCompromisso.Where(x => x.Excluido == false), "ID", "Nome");
-                ViewBag.TipoCompromisso = new SelectList(db.TipoCompromisso.Where(x => x.Excluido == false), "ID", "NomeCompromisso");
+                populaDropDowns(compromisso);
 
                 return View();
             }
             else
             {
-                Compromisso compromisso = db.Compromisso.Find(id);
+                compromisso = db.Compromisso.Find(id);
 
-                ViewBag.Contato = new SelectList(db.Contato.Where(x => x.Excluido == false), "ID", "Nome", compromisso.Contato);
-                ViewBag.StatusCompromisso = new SelectList(db.StatusCompromisso.Where(x => x.Excluido == false), "ID", "Nome", compromisso.StatusCompromisso);
-                ViewBag.TipoCompromisso = new SelectList(db.TipoCompromisso.Where(x => x.Excluido == false), "ID", "NomeCompromisso", compromisso.TipoCompromisso);
+                populaDropDowns(compromisso);
 
                 return View(compromisso);
             }
@@ -85,18 +88,14 @@ namespace meivorts.Controllers
                 }
                 else
                 {
-                    ViewBag.Contato = new SelectList(db.Contato.Where(x => x.Excluido == false), "ID", "Nome", compromisso.Contato);
-                    ViewBag.StatusCompromisso = new SelectList(db.StatusCompromisso.Where(x => x.Excluido == false), "ID", "Nome", compromisso.StatusCompromisso);
-                    ViewBag.TipoCompromisso = new SelectList(db.TipoCompromisso.Where(x => x.Excluido == false), "ID", "NomeCompromisso", compromisso.TipoCompromisso);
+                    populaDropDowns(compromisso);
 
                     return View(compromisso);
                 }
             }
             catch
             {
-                ViewBag.Contato = new SelectList(db.Contato.Where(x => x.Excluido == false), "ID", "Nome", compromisso.Contato);
-                ViewBag.StatusCompromisso = new SelectList(db.StatusCompromisso.Where(x => x.Excluido == false), "ID", "Nome", compromisso.StatusCompromisso);
-                ViewBag.TipoCompromisso = new SelectList(db.TipoCompromisso.Where(x => x.Excluido == false), "ID", "NomeCompromisso", compromisso.TipoCompromisso);
+                populaDropDowns(compromisso);
 
                 return View(compromisso);
             }
@@ -136,6 +135,23 @@ namespace meivorts.Controllers
                    JsonRequestBehavior.AllowGet);
             }
         }
+
+        #endregion
+
+        #region methods
+
+        /// <summary>
+        /// Populate dropdowns 
+        /// </summary>
+        /// <param name="compromisso">Compromisso object</param>
+        private void populaDropDowns(Compromisso compromisso)
+        {
+            ViewBag.Contato = new SelectList(db.Contato.Where(x => x.Excluido == false), "ID", "Nome", compromisso.Contato);
+            ViewBag.StatusCompromisso = new SelectList(db.StatusCompromisso.Where(x => x.Excluido == false), "ID", "Nome", compromisso.StatusCompromisso);
+            ViewBag.TipoCompromisso = new SelectList(db.TipoCompromisso.Where(x => x.Excluido == false), "ID", "NomeCompromisso", compromisso.TipoCompromisso);
+        }
+
+        #endregion
 
     }
 }
