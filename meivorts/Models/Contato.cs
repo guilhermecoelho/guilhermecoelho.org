@@ -31,7 +31,7 @@ namespace meivorts.Models
         public System.DateTime DataAlteracao { get; set; }
         public bool Excluido { get; set; }
     
-        public virtual ICollection<Compromisso> Compromisso { get; set; }
         public virtual TipoContato TipoContato1 { get; set; }
+        public virtual ICollection<Compromisso> Compromisso { get; set; }
     }
 }

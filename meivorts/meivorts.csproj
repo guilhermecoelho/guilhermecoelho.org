@@ -124,6 +124,8 @@
   <ItemGroup>
     <Compile Include="Controllers\CompromissoController.cs" />
     <Compile Include="Controllers\ContatoController.cs" />
+    <Compile Include="Controllers\EnderecoController.cs" />
+    <Compile Include="Controllers\LocalController.cs" />
     <Compile Include="Controllers\StatusCompromissoController.cs" />
     <Compile Include="Controllers\TipoCompromissoController.cs" />
     <Compile Include="Controllers\TipoContatoController.cs" />
@@ -138,6 +140,14 @@
       <DependentUpon>_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ContatoEntity.cs" />
+    <Compile Include="Models\Endereco.cs">
+      <DependentUpon>_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EnderecoEntity.cs" />
+    <Compile Include="Models\Local.cs">
+      <DependentUpon>_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LocalEntity.cs" />
     <Compile Include="Models\StatusCompromisso.cs">
       <DependentUpon>_Model.tt</DependentUpon>
     </Compile>
@@ -212,6 +222,7 @@
     <Content Include="Scripts\jquery.inputmask\jquery.inputmask.phone.extensions-3.0.55.js" />
     <Content Include="Scripts\jquery.inputmask\jquery.inputmask.regex.extensions-3.0.55.js" />
     <Content Include="Scripts\Util\Action.js" />
+    <Content Include="Scripts\Util\BootstrapAux.js" />
     <Content Include="Scripts\Util\Mask.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -234,6 +245,7 @@
     <Content Include="Views\StatusCompromisso\Create.cshtml" />
     <Content Include="Views\Compromisso\Index.cshtml" />
     <Content Include="Views\Compromisso\Create.cshtml" />
+    <Content Include="Views\Endereco\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

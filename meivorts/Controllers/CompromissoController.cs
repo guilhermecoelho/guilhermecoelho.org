@@ -71,7 +71,6 @@ namespace meivorts.Controllers
 
                         compromissoEdit.DataAlteracao = DateTime.Now;
 
-                        compromissoEdit.Nome = compromisso.Nome;
                         compromissoEdit.Descricao = compromisso.Descricao;
                         compromissoEdit.Data = compromisso.Data;
                         compromissoEdit.Hora = compromisso.Hora;

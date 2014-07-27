@@ -15,11 +15,11 @@ namespace meivorts.Models
     {
         public int ID { get; set; }
 
-        [Required(ErrorMessage="Preencha o campo Nome")]
-        [Display(Name=" Nome ")]
-        public string Nome { get; set; }
+        [Required(ErrorMessage="Selecione um local")]
+        [Display(Name=" Local ")]
+        public int IDLocal { get; set; }
 
-        [Display(Name = " Descrição ")]
+        [Display(Name = " Observação ")]
         public string Descricao { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo Data")]
@@ -39,7 +39,7 @@ namespace meivorts.Models
         public int Contato { get; set; }
 
         [Required(ErrorMessage = "Selecione um status para o Compromisso")]
-        [Display(Name = " Nome ")]
+        [Display(Name = " Status ")]
         public int StatusCompromisso { get; set; }
 
         public System.DateTime DataCriacao { get; set; }
@@ -47,6 +47,7 @@ namespace meivorts.Models
         public bool Excluido { get; set; }
 
         public virtual Contato Contato1 { get; set; }
+        public virtual Local Local { get; set; }
         public virtual StatusCompromisso StatusCompromisso1 { get; set; }
         public virtual TipoCompromisso TipoCompromisso1 { get; set; }
     }
