@@ -1,0 +1,106 @@
+﻿@model meivorts.Models.Local
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+<div class="col-lg-12">
+    <script src="~/Scripts/pages/Local.js"></script>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <p>
+            <button class="glyphicon glyphicon-backward btn-sm btn btn-primary" type="button" onclick="location.href='@Url.Action("")'"> Voltar</button>
+        </p>
+        <form class="form-horizontal" role="form">
+            <div class="form-group">
+                <fieldset>
+                    <legend>Local</legend>
+                    <div class="control-group">
+                        <div class="control-label">
+                            @Html.LabelFor(model => model.NomeLocal)
+                        </div>
+                        <div class="controls">
+                            @Html.TextBoxFor(model => model.NomeLocal, new { @class = "form-control", @style = "Width:20%" })
+                            @Html.ValidationMessageFor(model => model.NomeLocal)
+                            <p></p>
+                        </div>
+                        <p><input id="showEndereco" type="checkbox"  value="0" onclick="showEnderecoForm(this.value);" > Cadastrar endereço</p>
+
+                       
+                        <div id="enderecoForm" style="display:none">
+                            <div class="control-label">
+                                @Html.LabelFor(model => model.Endereco.Rua)
+                            </div>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.Endereco.Rua, new { @class = "form-control", @style = "Width:20%" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Rua)
+                                <p></p>
+                            </div>
+                            <div class="control-label">
+                                @Html.LabelFor(model => model.Endereco.Numero)
+                            </div>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.Endereco.Numero, new { @class = "form-control", @style = "Width:20%" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Numero)
+                                <p></p>
+                            </div>
+                            <div class="control-label">
+                                @Html.LabelFor(model => model.Endereco.Complemento)
+                            </div>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.Endereco.Complemento, new { @class = "form-control", @style = "Width:20%" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Complemento)
+                                <p></p>
+                            </div>
+                            <div class="control-label">
+                                @Html.LabelFor(model => model.Endereco.Bairro)
+                            </div>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.Endereco.Bairro, new { @class = "form-control", @style = "Width:20%" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Bairro)
+                                <p></p>
+                            </div>
+                            <div class="control-label">
+                                @Html.LabelFor(model => model.Endereco.Cidade)
+                            </div>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.Endereco.Cidade, new { @class = "form-control", @style = "Width:20%" })
+                                @Html.ValidationMessageFor(model => model.Endereco.Cidade)
+                                <p></p>
+                            </div>
+                            <div class="control-label">
+                                @Html.LabelFor(model => model.Endereco.UF)
+                            </div>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.Endereco.UF, new { @class = "form-control", @style = "Width:20%" })
+                                @Html.ValidationMessageFor(model => model.Endereco.UF)
+                                <p></p>
+                            </div>
+                            <div class="control-label">
+                                @Html.LabelFor(model => model.Endereco.CEP)
+                            </div>
+                            <div class="controls">
+                                @Html.TextBoxFor(model => model.Endereco.CEP, new { @class = "form-control", @style = "Width:20%" })
+                                @Html.ValidationMessageFor(model => model.Endereco.CEP)
+                                <p></p>
+                            </div>
+
+
+                           
+                        </div>
+                        <div class="control-group">
+                            <div class="controls">
+                                <button class="btn btn-success" type="submit">Salvar</button>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </form>
+    }
+</div>

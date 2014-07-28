@@ -221,6 +221,7 @@
     <Content Include="Scripts\jquery.inputmask\jquery.inputmask.numeric.extensions-3.0.55.js" />
     <Content Include="Scripts\jquery.inputmask\jquery.inputmask.phone.extensions-3.0.55.js" />
     <Content Include="Scripts\jquery.inputmask\jquery.inputmask.regex.extensions-3.0.55.js" />
+    <Content Include="Scripts\pages\Local.js" />
     <Content Include="Scripts\Util\Action.js" />
     <Content Include="Scripts\Util\BootstrapAux.js" />
     <Content Include="Scripts\Util\Mask.js" />
@@ -246,6 +247,8 @@
     <Content Include="Views\Compromisso\Index.cshtml" />
     <Content Include="Views\Compromisso\Create.cshtml" />
     <Content Include="Views\Endereco\Create.cshtml" />
+    <Content Include="Views\Local\Index.cshtml" />
+    <Content Include="Views\Local\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
