@@ -63,24 +63,29 @@
                         <td>
                             <button type="button" class="glyphicon glyphicon-plus btn btn-xs btn-default" data-target="#Contato_@Html.DisplayFor(modelItem => item.Contato)" data-toggle="modal"></button>
                             @Html.DisplayFor(modelItem => item.Contato1.Nome)
-                            
+
                         </td>
                         <td align="center">
                             <button type="button" class="glyphicon glyphicon-plus btn btn-xs btn-default" data-toggle="popover" title="Observa&#231;&#227;o" data-content="@Html.DisplayFor(modelItem => item.Descricao) " />
                         </td>
                         <td align="right">
-                            <button class="glyphicon glyphicon-pencil btn-sm btn btn-success" type="button" onclick="location.href='@Url.Action("Create", "compromisso", new { id = item.ID })'"> Editar</button>
-                            <button class="glyphicon glyphicon-trash btn-sm btn btn-danger" name="Excluir" type="button" onclick="Excluir(@Html.DisplayFor(modelItem => item.ID), 'compromisso')"> Excluir</button>
+                            <button class="glyphicon glyphicon-pencil btn-sm btn btn-success" type="button" onclick="location.href='@Url.Action("Create", "compromisso", new { id = item.ID })'">Editar</button>
+                            <button class="glyphicon glyphicon-trash btn-sm btn btn-danger" name="Excluir" type="button" onclick="Excluir(@Html.DisplayFor(modelItem => item.ID), 'compromisso')">Excluir</button>
                         </td>
                         <div class="modal fade" id="Local_@Html.DisplayFor(modelItem => item.IDLocal)" tabindex=" -1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Local</h4>
+                                        <h4 class="modal-title" id="modalLocal">Local</h4>
                                     </div>
                                     <div class="modal-body">
-                                        @Html.DisplayFor(modelItem => item.Local.NomeLocal)
+                                        <p>Local: @Html.DisplayFor(modelItem => item.Local.NomeLocal)</p>
+                                        <p>Rua: @Html.DisplayFor(modelItem => item.Local.Endereco.Rua)</p>
+                                        <p>Número: @Html.DisplayFor(modelItem => item.Local.Endereco.Numero)</p>
+                                        <p>Bairro: @Html.DisplayFor(modelItem => item.Local.Endereco.Bairro)</p>
+                                        <p>Cidade: @Html.DisplayFor(modelItem => item.Local.Endereco.Cidade)</p>
+                                        <p>UF: @Html.DisplayFor(modelItem => item.Local.Endereco.UF)</p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -94,10 +99,15 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="myModalLabel">Local</h4>
+                                        <h4 class="modal-title" id="modalContato">Contato</h4>
                                     </div>
                                     <div class="modal-body">
-                                        @Html.DisplayFor(modelItem => item.Contato1.Nome)
+                                        <p>Nome: @Html.DisplayFor(modelItem => item.Contato1.Nome) </p>
+                                        <p>Tipo de contato: @Html.DisplayFor(modelItem => item.Contato1.TipoContato1.NomeTipoContato) </p>
+                                        <p>Email: @Html.DisplayFor(modelItem => item.Contato1.Email) </p>
+                                        <p>Telefone: @Html.DisplayFor(modelItem => item.Contato1.Telefone) </p>
+                                        <p>Facebook: @Html.DisplayFor(modelItem => item.Contato1.Facebook) </p>
+                                        <p>Twitter: @Html.DisplayFor(modelItem => item.Contato1.Twitter) </p>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
