@@ -14,7 +14,11 @@ namespace meivorts.Models
     public class LocalEntity
     {
         public int ID { get; set; }
+
+        [Required(ErrorMessage="Escreva o nome do local")]
+        [Display(Name= "Local")]
         public string NomeLocal { get; set; }
+
         public int IDEndereco { get; set; }
         public System.DateTime DataCriacao { get; set; }
         public System.DateTime DataAlteracao { get; set; }

@@ -24,10 +24,14 @@ namespace meivorts.Models
 
         [Required(ErrorMessage = "Preencha o campo Data")]
         [Display(Name = " Data ")]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public System.DateTime Data { get; set; }
 
         [Required(ErrorMessage = "Preencha o campo Hora")]
         [Display(Name = " Hora ")]
+        [DataType(DataType.Time)]
+        [DisplayFormat(DataFormatString = @"{0:hh\:mm}")]
         public System.TimeSpan Hora { get; set; }
 
         [Required(ErrorMessage = "Selecione o tipo de compromisso")]

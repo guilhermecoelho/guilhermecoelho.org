@@ -35,14 +35,11 @@ namespace meivorts.Controllers
 
             if (id.Equals(0))
             {
-                populaDropDowns(local);
-
                 return View();
             }
             else
             {
                 local = db.Local.Find(id);
-                populaDropDowns(local);
 
                 return View(local);
             }
@@ -61,8 +58,11 @@ namespace meivorts.Controllers
                     if (id.Equals(0))
                     {
                         local.DataAlteracao = local.DataCriacao = DateTime.Now;
+                        local.Endereco.DataAlteracao = local.Endereco.DataCriacao = DateTime.Now;
 
+                        db.Endereco.Add(local.Endereco);
                         db.Local.Add(local);
+
                     }
                     else
                     {
@@ -72,9 +72,18 @@ namespace meivorts.Controllers
 
                         localEdit.DataAlteracao = DateTime.Now;
                         localEdit.NomeLocal = local.NomeLocal;
-                        localEdit.IDEndereco = local.IDEndereco;
+
+                        localEdit.Endereco.Bairro = local.Endereco.Bairro;
+                        localEdit.Endereco.CEP = local.Endereco.CEP;
+                        localEdit.Endereco.Cidade = local.Endereco.Cidade;
+                        localEdit.Endereco.Complemento = local.Endereco.Complemento;
+                        localEdit.Endereco.Numero = local.Endereco.Numero;
+                        localEdit.Endereco.Rua = local.Endereco.Rua;
+                        localEdit.Endereco.UF = local.Endereco.UF;
+                        localEdit.Endereco.DataAlteracao = DateTime.Now;
 
                         db.Entry(localEdit).State = System.Data.Entity.EntityState.Modified;
+
                     }
 
                     db.SaveChanges();
@@ -83,14 +92,12 @@ namespace meivorts.Controllers
                 }
                 else
                 {
-                    populaDropDowns(local);
 
                     return View(local);
                 }
             }
             catch
             {
-                populaDropDowns(local);
 
                 return View(local);
             }
@@ -103,21 +110,35 @@ namespace meivorts.Controllers
             {
                 Local local = new Local();
 
-                local = db.Local.Find(id);
+                int hasLocalInCompromisso = db.Compromisso.Where(x => x.IDLocal == id && x.Excluido == false).Count();
+                if (hasLocalInCompromisso.Equals(0))
+                {
+                    local = db.Local.Find(id);
 
-                local.DataAlteracao = DateTime.Now;
-                local.Excluido = true;
+                    local.DataAlteracao = DateTime.Now;
+                    local.Excluido = true;
 
-                db.Entry(local).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                    db.Entry(local).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
 
-                return Json(
-                    new
-                    {
-                        OK = true,
-                        Mensagem = "Item excluido com sucesso"
-                    },
-                    JsonRequestBehavior.AllowGet);
+                    return Json(
+                        new
+                        {
+                            OK = true,
+                            Mensagem = "Item excluido com sucesso"
+                        },
+                        JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(
+                        new
+                        {
+                            OK = false,
+                            Mensagem = "Exclusão não permitida, existem Compromissos usando este item"
+                        },
+                        JsonRequestBehavior.AllowGet);
+                }
             }
             catch
             {
@@ -134,15 +155,6 @@ namespace meivorts.Controllers
         #endregion
 
         #region methods
-
-        /// <summary>
-        /// Populate dropdowns 
-        /// </summary>
-        /// <param name="compromisso">Local object</param>
-        private void populaDropDowns(Local local)
-        {
-            ViewBag.TipoLocal = new SelectList(db.Endereco.Where(x => x.Excluido == false), "ID", "ID", local.Endereco);
-        }
 
         #endregion
 
