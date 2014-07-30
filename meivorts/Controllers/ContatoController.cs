@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using meivorts.Controllers;
 using meivorts.Models;
+using System.Security.Cryptography;
+using System.Text;
 
 namespace meivorts.Controllers
 {
@@ -21,8 +23,46 @@ namespace meivorts.Controllers
         //
         // GET: /Contato/
 
+        ///teste criptografia
+        public static String hashSHA512(string unhashValue)
+        {
+            string unhashedValue = "hello";
+            SHA512 shaM = new SHA512Managed();
+
+            byte[] hash = shaM.ComputeHash(Encoding.ASCII.GetBytes(unhashedValue));
+
+            StringBuilder stringBuilder = new StringBuilder();
+            foreach (byte b in hash)
+            {
+                stringBuilder.AppendFormat("{0:x2}", b);
+            }
+            return stringBuilder.ToString();
+        }
+
+        public static bool Validate(string enteredValue,
+        string hashedValue)
+        {
+            if (hashSHA512(enteredValue) == hashedValue) return true;
+
+            return false;
+        }
+
+        /// fim teste criptografia ///
+        
         public ActionResult Index()
         {
+            ///teste criptografia
+
+            String teste = "hello";
+            String testeSaida = hashSHA512(teste);
+
+            if (hashSHA512(teste) == testeSaida)
+            {
+                bool testefim = true;
+            }
+
+            /// fim teste criptografia ///
+            
             var contato = db.Contato.Include("TipoContato1").Where(x => x.Excluido == false).ToList();
             return View(contato);
         }
