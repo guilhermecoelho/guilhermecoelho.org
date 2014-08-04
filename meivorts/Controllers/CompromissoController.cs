@@ -11,7 +11,7 @@ namespace meivorts.Controllers
     {
         #region objects
 
-        private meivortsEntities db = new meivortsEntities();
+        private meivorts_validacaoEntities db = new meivorts_validacaoEntities();
 
         #endregion
 
@@ -21,7 +21,7 @@ namespace meivorts.Controllers
 
         public ActionResult Index()
         {
-            var compromisso = db.Compromisso.Include("Contato1").Include("StatusCompromisso1").Include("TipoCompromisso1").Include("Local").Where(x => x.Excluido == false).ToList().OrderBy(x => x.TipoCompromisso1.NomeCompromisso);
+            var compromisso = db.Compromisso.Include("Contato1").Include("StatusCompromisso1").Include("TipoCompromisso1").Include("Local").Where(x => x.Excluido == false).Where(x => x.Data >= DateTime.Now).ToList().OrderBy(x => x.Data).OrderBy(x => x.TipoCompromisso1.NomeCompromisso);
             return View(compromisso);
         }
         //

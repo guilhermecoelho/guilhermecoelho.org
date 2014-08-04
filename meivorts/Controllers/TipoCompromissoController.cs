@@ -12,7 +12,7 @@ namespace meivorts.Controllers
     {
         #region objects
 
-        private meivortsEntities db = new meivortsEntities();
+        private meivorts_validacaoEntities db = new meivorts_validacaoEntities();
 
         #endregion
 

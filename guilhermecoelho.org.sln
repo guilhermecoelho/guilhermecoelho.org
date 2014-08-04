@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2013 for Web
-VisualStudioVersion = 12.0.21005.1
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio Express 2012 for Web
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "guilhermecoelho.org", "guilhermecoelho.org\guilhermecoelho.org.csproj", "{C4ACED1C-A458-4D39-837B-5E0D6A569286}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meivorts", "meivorts\meivorts.csproj", "{77104228-7C85-4B29-BBE0-ABFF65B7AEE7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email", "Email\Email.csproj", "{C6F099E4-EFA0-4865-94F7-CFC16609D37B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +21,10 @@ Global
 		{77104228-7C85-4B29-BBE0-ABFF65B7AEE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77104228-7C85-4B29-BBE0-ABFF65B7AEE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77104228-7C85-4B29-BBE0-ABFF65B7AEE7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6F099E4-EFA0-4865-94F7-CFC16609D37B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6F099E4-EFA0-4865-94F7-CFC16609D37B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6F099E4-EFA0-4865-94F7-CFC16609D37B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6F099E4-EFA0-4865-94F7-CFC16609D37B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
