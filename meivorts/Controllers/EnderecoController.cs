@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace meivorts.Controllers
 {
+    [Authorize]
     public class EnderecoController : Controller
     {
         #region objects

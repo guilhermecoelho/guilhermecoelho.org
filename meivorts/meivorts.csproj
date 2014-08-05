@@ -127,6 +127,7 @@
     <Compile Include="Controllers\ContatoController.cs" />
     <Compile Include="Controllers\EnderecoController.cs" />
     <Compile Include="Controllers\LocalController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\StatusCompromissoController.cs" />
     <Compile Include="Controllers\TipoCompromissoController.cs" />
     <Compile Include="Controllers\TipoContatoController.cs" />
@@ -161,6 +162,7 @@
       <DependentUpon>_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoContatoEntity.cs" />
+    <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -251,6 +253,7 @@
     <Content Include="Views\Endereco\Create.cshtml" />
     <Content Include="Views\Local\Index.cshtml" />
     <Content Include="Views\Local\Create.cshtml" />
+    <Content Include="Views\Login\LogOn.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

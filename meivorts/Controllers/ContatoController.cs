@@ -10,6 +10,7 @@ using System.Text;
 
 namespace meivorts.Controllers
 {
+    [Authorize]
     public class ContatoController : Controller
     {
         #region objects

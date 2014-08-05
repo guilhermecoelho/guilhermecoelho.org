@@ -8,6 +8,7 @@ using meivorts.Models;
 
 namespace meivorts.Controllers
 {
+    [Authorize]
     public class TipoCompromissoController : Controller
     {
         #region objects
