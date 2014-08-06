@@ -132,6 +132,7 @@
     <Compile Include="Controllers\TipoCompromissoController.cs" />
     <Compile Include="Controllers\TipoContatoController.cs" />
     <Compile Include="Controllers\TipoUsuarioController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -187,6 +188,7 @@
       <DependentUpon>_Model.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\Criptografia.cs" />
     <Compile Include="Util\Email.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -263,6 +265,9 @@
     <Content Include="Views\Local\Create.cshtml" />
     <Content Include="Views\Login\LogOn.cshtml" />
     <Content Include="Views\TipoUsuario\Create.cshtml" />
+    <Content Include="Views\TipoUsuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Usuario\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

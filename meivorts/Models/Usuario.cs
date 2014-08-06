@@ -17,7 +17,6 @@ namespace meivorts.Models
         public int ID { get; set; }
         public string NomeUsuario { get; set; }
         public string Senha { get; set; }
-        public string ComplementoSenha { get; set; }
         public int TipoUsuario { get; set; }
         public System.DateTime DataCriacao { get; set; }
         public System.DateTime DataAlteracao { get; set; }

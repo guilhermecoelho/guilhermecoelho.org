@@ -1,4 +1,5 @@
-﻿using System;
+﻿using meivorts.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,7 +10,13 @@ namespace meivorts.Controllers
 {
     public class LoginController : Controller
     {
+        #region objects
 
+        private meivorts_validacaoEntities db = new meivorts_validacaoEntities();
+
+        #endregion
+
+        #region CRUD
         [HttpGet]
         public ActionResult LogOn()
         {
@@ -19,18 +26,25 @@ namespace meivorts.Controllers
         [HttpPost]
         public ActionResult LogOn(FormCollection f, string returnUrl)
         {
-            var usuario = f["usuario"];
-            var senha = f["senha"];
+            Usuario usuario = new Usuario();
 
-            ///
-            /// criar verificação do usuário 
-            ///
+            var nomeUsuario = f["nomeUsuario"];
+            var senha = f["Senha"];
 
-            if (usuario == "guilherme" && senha == "123")
+            usuario = db.Usuario.Where(x => x.NomeUsuario == nomeUsuario).FirstOrDefault();
+
+            if (usuario != null)
             {
-                FormsAuthentication.SetAuthCookie(f["login"], false);
+                //valida a senha digitada com a senha criptografada no banco
+                bool senhaCorreta = Util.PasswordHash.ValidatePassword(senha, usuario.Senha);
 
-                return Redirect(returnUrl);
+                if (senhaCorreta)
+                {
+                    f["Senha"] = usuario.Senha;
+
+                    FormsAuthentication.SetAuthCookie(f["login"], false);
+                    return Redirect(returnUrl);
+                }
             }
             return View();
         }
@@ -43,4 +57,7 @@ namespace meivorts.Controllers
         }
 
     }
+        #endregion
+
+        
 }

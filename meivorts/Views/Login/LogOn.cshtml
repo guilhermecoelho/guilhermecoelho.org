@@ -17,16 +17,16 @@
                 <legend>Login</legend>
                 <div class="control-group">
                     <div class="control-label">
-                        @Html.LabelFor(model => model.usuario)
+                        @Html.LabelFor(model => model.NomeUsuario)
                     </div>
                     <div class="control">
-                        @Html.TextBoxFor(model => model.usuario, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.TextBoxFor(model => model.NomeUsuario, new { @class = "form-control", @style = "Width:20%" })
                     </div>
                     <div class="control-label">
-                        @Html.LabelFor(model => model.senha)
+                        @Html.LabelFor(model => model.Senha)
                     </div>
                     <div class="control">
-                        @Html.PasswordFor(model => model.senha, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.PasswordFor(model => model.Senha, new { @class = "form-control", @style = "Width:20%" })
                     </div>
                     <p></p>
                 </div>

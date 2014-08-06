@@ -7,6 +7,7 @@ using System.Web.Mvc;
 
 namespace meivorts.Controllers
 {
+    [Authorize]
     public class TipoUsuarioController : Controller
     {
         #region objects
@@ -96,9 +97,9 @@ namespace meivorts.Controllers
             {
                 TipoUsuario tipoUsuario = new TipoUsuario();
 
-                //verifica se o tipoContato está sendo usado por algum contato não excluido
-                int hasTipoUsuarioInCompromisso = db.Usuario.Where(x => x.TipoUsuario == id && x.Excluido == false).Count();
-                if (hasTipoUsuarioInCompromisso.Equals(0))
+                //verifica se o tipoUsuario está sendo usado por algum contato não excluido
+                int hasTipoUsuarioInUsuario = db.Usuario.Where(x => x.TipoUsuario == id && x.Excluido == false).Count();
+                if (hasTipoUsuarioInUsuario.Equals(0))
                 {
                     tipoUsuario = db.TipoUsuario.Find(id);
 

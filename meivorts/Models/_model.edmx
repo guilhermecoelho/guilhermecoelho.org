@@ -4,16 +4,55 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="meivorts_validacaoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="meivorts_validacaoModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="meivorts_validacaoModelStoreContainer">
+          <EntitySet Name="Compromisso" EntityType="meivorts_validacaoModel.Store.Compromisso" store:Type="Tables" Schema="meivorts" />
+          <EntitySet Name="Contato" EntityType="meivorts_validacaoModel.Store.Contato" store:Type="Tables" Schema="meivorts" />
+          <EntitySet Name="Endereco" EntityType="meivorts_validacaoModel.Store.Endereco" store:Type="Tables" Schema="meivorts" />
+          <EntitySet Name="Local" EntityType="meivorts_validacaoModel.Store.Local" store:Type="Tables" Schema="meivorts" />
+          <EntitySet Name="StatusCompromisso" EntityType="meivorts_validacaoModel.Store.StatusCompromisso" store:Type="Tables" Schema="meivorts" />
+          <EntitySet Name="TipoCompromisso" EntityType="meivorts_validacaoModel.Store.TipoCompromisso" store:Type="Tables" Schema="meivorts" />
+          <EntitySet Name="TipoContato" EntityType="meivorts_validacaoModel.Store.TipoContato" store:Type="Tables" Schema="meivorts" />
+          <EntitySet Name="TipoUsuario" EntityType="meivorts_validacaoModel.Store.TipoUsuario" store:Type="Tables" Schema="meivorts" />
+          <EntitySet Name="Usuario" EntityType="meivorts_validacaoModel.Store.Usuario" store:Type="Tables" Schema="meivorts" />
+          <AssociationSet Name="FK_Compromisso_Contato" Association="meivorts_validacaoModel.Store.FK_Compromisso_Contato">
+            <End Role="Contato" EntitySet="Contato" />
+            <End Role="Compromisso" EntitySet="Compromisso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compromisso_Local" Association="meivorts_validacaoModel.Store.FK_Compromisso_Local">
+            <End Role="Local" EntitySet="Local" />
+            <End Role="Compromisso" EntitySet="Compromisso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compromisso_StatusCompromisso" Association="meivorts_validacaoModel.Store.FK_Compromisso_StatusCompromisso">
+            <End Role="StatusCompromisso" EntitySet="StatusCompromisso" />
+            <End Role="Compromisso" EntitySet="Compromisso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Compromisso_TipoCompromisso" Association="meivorts_validacaoModel.Store.FK_Compromisso_TipoCompromisso">
+            <End Role="TipoCompromisso" EntitySet="TipoCompromisso" />
+            <End Role="Compromisso" EntitySet="Compromisso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contato_TipoContato" Association="meivorts_validacaoModel.Store.FK_Contato_TipoContato">
+            <End Role="TipoContato" EntitySet="TipoContato" />
+            <End Role="Contato" EntitySet="Contato" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Local_Endereco" Association="meivorts_validacaoModel.Store.FK_Local_Endereco">
+            <End Role="Endereco" EntitySet="Endereco" />
+            <End Role="Local" EntitySet="Local" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_TipoUsuario" Association="meivorts_validacaoModel.Store.FK_Usuario_TipoUsuario">
+            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="Compromisso">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="IDLocal" Type="int" Nullable="false" />
           <Property Name="Descricao" Type="varchar" MaxLength="250" />
           <Property Name="Data" Type="datetime" Nullable="false" />
-          <Property Name="Hora" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Hora" Type="time" Nullable="false" />
           <Property Name="TipoCompromisso" Type="int" Nullable="false" />
           <Property Name="Contato" Type="int" />
           <Property Name="StatusCompromisso" Type="int" Nullable="false" />
@@ -25,8 +64,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="Observacao" Type="varchar" MaxLength="250" />
           <Property Name="Telefone" Type="varchar" MaxLength="50" />
           <Property Name="Email" Type="varchar" MaxLength="50" />
@@ -41,7 +80,7 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Rua" Type="varchar" MaxLength="50" />
           <Property Name="Numero" Type="int" />
           <Property Name="Complemento" Type="varchar" MaxLength="50" />
@@ -57,8 +96,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NomeLocal" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NomeLocal" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="IDEndereco" Type="int" Nullable="false" />
           <Property Name="DataCriacao" Type="datetime" Nullable="false" />
           <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
@@ -68,8 +107,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="DataCriacao" Type="datetime" Nullable="false" />
           <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
           <Property Name="Excluido" Type="bit" Nullable="false" />
@@ -78,8 +117,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NomeCompromisso" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NomeCompromisso" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="DataCriacao" Type="datetime" Nullable="false" />
           <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
           <Property Name="Excluido" Type="bit" Nullable="false" />
@@ -88,8 +127,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NomeTipoContato" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NomeTipoContato" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="DataCriacao" Type="datetime" Nullable="false" />
           <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
           <Property Name="Excluido" Type="bit" Nullable="false" />
@@ -98,8 +137,8 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Nome" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Nome" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="DataCriacao" Type="datetime" Nullable="false" />
           <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
           <Property Name="Excluido" Type="bit" Nullable="false" />
@@ -108,10 +147,9 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="NomeUsuario" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Senha" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="ComplementoSenha" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="NomeUsuario" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Senha" Type="varchar" Nullable="false" MaxLength="250" />
           <Property Name="TipoUsuario" Type="int" Nullable="false" />
           <Property Name="DataCriacao" Type="datetime" Nullable="false" />
           <Property Name="DataAlteracao" Type="datetime" Nullable="false" />
@@ -119,8 +157,8 @@
           <Property Name="Excluido" Type="bit" Nullable="false" />
         </EntityType>
         <Association Name="FK_Compromisso_Contato">
-          <End Role="Contato" Type="Self.Contato" Multiplicity="0..1" />
-          <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
+          <End Role="Contato" Type="meivorts_validacaoModel.Store.Contato" Multiplicity="0..1" />
+          <End Role="Compromisso" Type="meivorts_validacaoModel.Store.Compromisso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Contato">
               <PropertyRef Name="ID" />
@@ -131,8 +169,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Compromisso_Local">
-          <End Role="Local" Type="Self.Local" Multiplicity="1" />
-          <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
+          <End Role="Local" Type="meivorts_validacaoModel.Store.Local" Multiplicity="1" />
+          <End Role="Compromisso" Type="meivorts_validacaoModel.Store.Compromisso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Local">
               <PropertyRef Name="ID" />
@@ -143,8 +181,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Compromisso_StatusCompromisso">
-          <End Role="StatusCompromisso" Type="Self.StatusCompromisso" Multiplicity="1" />
-          <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
+          <End Role="StatusCompromisso" Type="meivorts_validacaoModel.Store.StatusCompromisso" Multiplicity="1" />
+          <End Role="Compromisso" Type="meivorts_validacaoModel.Store.Compromisso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="StatusCompromisso">
               <PropertyRef Name="ID" />
@@ -155,8 +193,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Compromisso_TipoCompromisso">
-          <End Role="TipoCompromisso" Type="Self.TipoCompromisso" Multiplicity="1" />
-          <End Role="Compromisso" Type="Self.Compromisso" Multiplicity="*" />
+          <End Role="TipoCompromisso" Type="meivorts_validacaoModel.Store.TipoCompromisso" Multiplicity="1" />
+          <End Role="Compromisso" Type="meivorts_validacaoModel.Store.Compromisso" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoCompromisso">
               <PropertyRef Name="ID" />
@@ -167,8 +205,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Contato_TipoContato">
-          <End Role="TipoContato" Type="Self.TipoContato" Multiplicity="1" />
-          <End Role="Contato" Type="Self.Contato" Multiplicity="*" />
+          <End Role="TipoContato" Type="meivorts_validacaoModel.Store.TipoContato" Multiplicity="1" />
+          <End Role="Contato" Type="meivorts_validacaoModel.Store.Contato" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoContato">
               <PropertyRef Name="ID" />
@@ -179,8 +217,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Local_Endereco">
-          <End Role="Endereco" Type="Self.Endereco" Multiplicity="1" />
-          <End Role="Local" Type="Self.Local" Multiplicity="*" />
+          <End Role="Endereco" Type="meivorts_validacaoModel.Store.Endereco" Multiplicity="1" />
+          <End Role="Local" Type="meivorts_validacaoModel.Store.Local" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Endereco">
               <PropertyRef Name="ID" />
@@ -191,8 +229,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Usuario_TipoUsuario">
-          <End Role="TipoUsuario" Type="Self.TipoUsuario" Multiplicity="1" />
-          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <End Role="TipoUsuario" Type="meivorts_validacaoModel.Store.TipoUsuario" Multiplicity="1" />
+          <End Role="Usuario" Type="meivorts_validacaoModel.Store.Usuario" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="TipoUsuario">
               <PropertyRef Name="ID" />
@@ -202,45 +240,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="meivorts_validacaoModelStoreContainer">
-          <EntitySet Name="Compromisso" EntityType="Self.Compromisso" Schema="meivorts" store:Type="Tables" />
-          <EntitySet Name="Contato" EntityType="Self.Contato" Schema="meivorts" store:Type="Tables" />
-          <EntitySet Name="Endereco" EntityType="Self.Endereco" Schema="meivorts" store:Type="Tables" />
-          <EntitySet Name="Local" EntityType="Self.Local" Schema="meivorts" store:Type="Tables" />
-          <EntitySet Name="StatusCompromisso" EntityType="Self.StatusCompromisso" Schema="meivorts" store:Type="Tables" />
-          <EntitySet Name="TipoCompromisso" EntityType="Self.TipoCompromisso" Schema="meivorts" store:Type="Tables" />
-          <EntitySet Name="TipoContato" EntityType="Self.TipoContato" Schema="meivorts" store:Type="Tables" />
-          <EntitySet Name="TipoUsuario" EntityType="Self.TipoUsuario" Schema="meivorts" store:Type="Tables" />
-          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="meivorts" store:Type="Tables" />
-          <AssociationSet Name="FK_Compromisso_Contato" Association="Self.FK_Compromisso_Contato">
-            <End Role="Contato" EntitySet="Contato" />
-            <End Role="Compromisso" EntitySet="Compromisso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Compromisso_Local" Association="Self.FK_Compromisso_Local">
-            <End Role="Local" EntitySet="Local" />
-            <End Role="Compromisso" EntitySet="Compromisso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Compromisso_StatusCompromisso" Association="Self.FK_Compromisso_StatusCompromisso">
-            <End Role="StatusCompromisso" EntitySet="StatusCompromisso" />
-            <End Role="Compromisso" EntitySet="Compromisso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Compromisso_TipoCompromisso" Association="Self.FK_Compromisso_TipoCompromisso">
-            <End Role="TipoCompromisso" EntitySet="TipoCompromisso" />
-            <End Role="Compromisso" EntitySet="Compromisso" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contato_TipoContato" Association="Self.FK_Contato_TipoContato">
-            <End Role="TipoContato" EntitySet="TipoContato" />
-            <End Role="Contato" EntitySet="Contato" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Local_Endereco" Association="Self.FK_Local_Endereco">
-            <End Role="Endereco" EntitySet="Endereco" />
-            <End Role="Local" EntitySet="Local" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Usuario_TipoUsuario" Association="Self.FK_Usuario_TipoUsuario">
-            <End Role="TipoUsuario" EntitySet="TipoUsuario" />
-            <End Role="Usuario" EntitySet="Usuario" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -472,15 +471,14 @@
           <Key>
             <PropertyRef Name="ID" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NomeUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Senha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ComplementoSenha" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="TipoUsuario" Type="Int32" Nullable="false" />
-          <Property Name="DataCriacao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="DataAlteracao" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Ativo" Type="Boolean" Nullable="false" />
-          <Property Name="Excluido" Type="Boolean" Nullable="false" />
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="NomeUsuario" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Senha" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="TipoUsuario" Nullable="false" />
+          <Property Type="DateTime" Name="DataCriacao" Nullable="false" Precision="3" />
+          <Property Type="DateTime" Name="DataAlteracao" Nullable="false" Precision="3" />
+          <Property Type="Boolean" Name="Ativo" Nullable="false" />
+          <Property Type="Boolean" Name="Excluido" Nullable="false" />
           <NavigationProperty Name="TipoUsuario1" Relationship="meivorts_validacaoModel.FK_Usuario_TipoUsuario" FromRole="Usuario" ToRole="TipoUsuario" />
         </EntityType>
         <Association Name="FK_Usuario_TipoUsuario">
@@ -616,7 +614,6 @@
                 <ScalarProperty Name="DataAlteracao" ColumnName="DataAlteracao" />
                 <ScalarProperty Name="DataCriacao" ColumnName="DataCriacao" />
                 <ScalarProperty Name="TipoUsuario" ColumnName="TipoUsuario" />
-                <ScalarProperty Name="ComplementoSenha" ColumnName="ComplementoSenha" />
                 <ScalarProperty Name="Senha" ColumnName="Senha" />
                 <ScalarProperty Name="NomeUsuario" ColumnName="NomeUsuario" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
