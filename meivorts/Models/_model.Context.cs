@@ -32,5 +32,7 @@ namespace meivorts.Models
         public DbSet<StatusCompromisso> StatusCompromisso { get; set; }
         public DbSet<TipoCompromisso> TipoCompromisso { get; set; }
         public DbSet<TipoContato> TipoContato { get; set; }
+        public DbSet<TipoUsuario> TipoUsuario { get; set; }
+        public DbSet<Usuario> Usuario { get; set; }
     }
 }

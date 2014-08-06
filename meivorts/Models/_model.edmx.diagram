@@ -18,6 +18,9 @@
         <AssociationConnector Association="meivorts_validacaoModel.FK_Compromisso_TipoCompromisso" ManuallyRouted="false" />
         <AssociationConnector Association="meivorts_validacaoModel.FK_Contato_TipoContato" ManuallyRouted="false" />
         <AssociationConnector Association="meivorts_validacaoModel.FK_Local_Endereco" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="meivorts_validacaoModel.TipoUsuario" Width="1.5" PointX="5.375" PointY="6.375" />
+        <EntityTypeShape EntityType="meivorts_validacaoModel.Usuario" Width="1.5" PointX="7.625" PointY="6" />
+        <AssociationConnector Association="meivorts_validacaoModel.FK_Usuario_TipoUsuario" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

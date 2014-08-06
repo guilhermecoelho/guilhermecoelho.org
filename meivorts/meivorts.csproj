@@ -131,6 +131,7 @@
     <Compile Include="Controllers\StatusCompromissoController.cs" />
     <Compile Include="Controllers\TipoCompromissoController.cs" />
     <Compile Include="Controllers\TipoContatoController.cs" />
+    <Compile Include="Controllers\TipoUsuarioController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -162,7 +163,14 @@
       <DependentUpon>_Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\TipoContatoEntity.cs" />
-    <Compile Include="Models\Usuario.cs" />
+    <Compile Include="Models\TipoUsuario.cs">
+      <DependentUpon>_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TipoUsuarioEntity.cs" />
+    <Compile Include="Models\Usuario.cs">
+      <DependentUpon>_Model.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UsuarioEntity.cs" />
     <Compile Include="Models\_Model.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -254,6 +262,7 @@
     <Content Include="Views\Local\Index.cshtml" />
     <Content Include="Views\Local\Create.cshtml" />
     <Content Include="Views\Login\LogOn.cshtml" />
+    <Content Include="Views\TipoUsuario\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
