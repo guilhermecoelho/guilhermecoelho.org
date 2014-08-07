@@ -1,7 +1,7 @@
 ﻿@model meivorts.Models.Usuario
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Novo usuário";
 }
 
 <h2>Usuário</h2>
@@ -11,9 +11,6 @@
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
 
-    <p>
-        <button class="glyphicon glyphicon-backward btn-sm btn btn-primary" type="button" onclick="location.href='@Url.Action("")'"> Voltar</button>
-    </p>
     <form class="form-horizontal" role="form">
         <div class="form-group">
             <fieldset>

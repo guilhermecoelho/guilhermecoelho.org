@@ -16,8 +16,14 @@ namespace meivorts.Models
 
         public int ID { get; set; }
 
+        [Display(Name="Nome")]
+        [Required(ErrorMessage="Preencha um nome")]
         public string NomeUsuario { get; set; }
+
+        [Display(Name = "Senha")]
+        [Required(ErrorMessage = "Preencha uma senha")]
         public string Senha { get; set; }
+
         public int TipoUsuario { get; set; }
         public System.DateTime DataCriacao { get; set; }
         public System.DateTime DataAlteracao { get; set; }

@@ -1,41 +1,25 @@
 ﻿@model meivorts.Models.Usuario
 
 @{
-    ViewBag.Title = "LogOn";
+    ViewBag.Title = "Login";
 }
-
-<h2>LogOn</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Login</legend>
+        <form class="form-signin" role="form">
 
-    <form class="form-horizontal" role="form">
-        <div class="form-group">
-            <fieldset>
-                <legend>Login</legend>
-                <div class="control-group">
-                    <div class="control-label">
-                        @Html.LabelFor(model => model.NomeUsuario)
-                    </div>
-                    <div class="control">
-                        @Html.TextBoxFor(model => model.NomeUsuario, new { @class = "form-control", @style = "Width:20%" })
-                    </div>
-                    <div class="control-label">
-                        @Html.LabelFor(model => model.Senha)
-                    </div>
-                    <div class="control">
-                        @Html.PasswordFor(model => model.Senha, new { @class = "form-control", @style = "Width:20%" })
-                    </div>
-                    <p></p>
-                </div>
-                <div class="control-group">
-                    <div class="controls">
-                        <button class="btn btn-success" type="submit">Entrar</button>
-                    </div>
-                </div>
-            </fieldset>
+            @Html.TextBoxFor(model => model.NomeUsuario, new { @class = "form-control", @style = "Width:20%", @placeholder = "Usuario" })
+            <p></p>
+            @Html.PasswordFor(model => model.Senha, new { @class = "form-control", @style = "Width:20%", @placeholder = "Senha" })
+            <p></p>
+            <div class="controls">
+                <button class="btn btn-success" type="submit">Entrar</button>
             </div>
-    </form>
+
+        </form>
+    </fieldset>
 }

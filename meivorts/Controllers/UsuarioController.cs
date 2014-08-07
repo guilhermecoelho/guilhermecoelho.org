@@ -18,7 +18,7 @@ namespace meivorts.Controllers
         #region CRUD
         //
         // GET: /Usuario/
-
+        [Authorize]
         public ActionResult Index()
         {
             var usuario = db.Usuario.Where(model => model.Excluido == false).ToList();
@@ -27,7 +27,7 @@ namespace meivorts.Controllers
 
         //
         // GET: /Usuario/Create
-
+        [Authorize]
         public ActionResult Create(int id)
         {
             if (id.Equals(0))
@@ -44,7 +44,7 @@ namespace meivorts.Controllers
 
         //
         // POST: /Usuario/Create
-
+        [Authorize]
         [HttpPost]
         public ActionResult Create(int id, Usuario usuario)
         {
@@ -54,9 +54,7 @@ namespace meivorts.Controllers
                 {
                     if (id.Equals(0))
                     {
-                        usuario.DataAlteracao = usuario.DataCriacao = DateTime.Now;
-                        usuario.Senha = Util.PasswordHash.CreateHash(usuario.Senha);
-                        usuario.Ativo = true;
+                        setNovoUsuario(usuario);
 
                         db.Usuario.Add(usuario);
                     }
@@ -89,11 +87,49 @@ namespace meivorts.Controllers
                 return View(usuario);
             }
         }
+
+        //
+        // GET: /Usuario/NovoUsuario
+
+        public ActionResult NovoUsuario()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Usuario/NovoUsuario
+
+        [HttpPost]
+        public ActionResult NovoUsuario(Usuario usuario)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    setNovoUsuario(usuario);
+                    db.Usuario.Add(usuario);
+
+                    db.SaveChanges();
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View(usuario);
+                }
+            }
+            catch
+            {
+                return View(usuario);
+            }
+        }
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Authorize]
         [HttpGet]
         public JsonResult Delete(int id)
         {
@@ -116,7 +152,7 @@ namespace meivorts.Controllers
                         Mensagem = "Item excluido com sucesso"
                     },
                     JsonRequestBehavior.AllowGet);
-                
+
             }
             catch
             {
@@ -130,6 +166,24 @@ namespace meivorts.Controllers
             }
         }
         #endregion
-  
+
+        #region methods
+
+        /// <summary>
+        /// Popula novo usuário com valores padrões
+        /// </summary>
+        /// <param name="usuario">Objeto usuario com valores entrados pelo usuario</param>
+        /// <returns>Objeto usuario preenchido com os dados padrões</returns>
+        private Usuario setNovoUsuario(Usuario usuario)
+        {
+            usuario.DataAlteracao = usuario.DataCriacao = DateTime.Now;
+            usuario.Senha = Util.PasswordHash.CreateHash(usuario.Senha);
+            usuario.TipoUsuario = 1;
+            usuario.Ativo = true;
+
+            return usuario;
+        }
+
+        #endregion
     }
 }
