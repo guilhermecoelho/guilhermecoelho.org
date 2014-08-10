@@ -7,11 +7,12 @@ using System.Web.Mvc;
 
 namespace meivorts.Controllers
 {
+    [Authorize]
     public class EnderecoController : Controller
     {
         #region objects
 
-        private meivortsEntities db = new meivortsEntities();
+        private meivorts_validacaoEntities db = new meivorts_validacaoEntities();
 
         #endregion
 

@@ -19,7 +19,9 @@ namespace meivorts.Models
         [Display(Name= "Local")]
         public string NomeLocal { get; set; }
 
+        [Display(Name = "Endereço")]
         public int IDEndereco { get; set; }
+
         public System.DateTime DataCriacao { get; set; }
         public System.DateTime DataAlteracao { get; set; }
         public bool Excluido { get; set; }

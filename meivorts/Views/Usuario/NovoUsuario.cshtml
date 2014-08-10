@@ -1,0 +1,43 @@
+﻿@model meivorts.Models.Usuario
+
+@{
+    ViewBag.Title = "Novo usuário";
+}
+
+<h2>Usuário</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <form class="form-horizontal" role="form">
+        <div class="form-group">
+            <fieldset>
+                <legend>Usuário</legend>
+                <div class="control-group">
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.NomeUsuario)
+                    </div>
+                    <div class="control">
+                        @Html.TextBoxFor(model => model.NomeUsuario, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.NomeUsuario)
+                    </div>
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Senha)
+                    </div>
+                    <div class="control">
+                        @Html.PasswordFor(model => model.Senha, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Senha)
+                        <p></p>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <div class="controls">
+                        <button class="btn btn-success" type="submit">Salvar</button>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </form>
+}

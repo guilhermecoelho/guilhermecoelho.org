@@ -12,11 +12,11 @@ namespace meivorts.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class StatusCompromisso
+    public partial class TipoUsuario
     {
-        public StatusCompromisso()
+        public TipoUsuario()
         {
-            this.Compromisso = new HashSet<Compromisso>();
+            this.Usuario = new HashSet<Usuario>();
         }
     
         public int ID { get; set; }
@@ -25,6 +25,6 @@ namespace meivorts.Models
         public System.DateTime DataAlteracao { get; set; }
         public bool Excluido { get; set; }
     
-        public virtual ICollection<Compromisso> Compromisso { get; set; }
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

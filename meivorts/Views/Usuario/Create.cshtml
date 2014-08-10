@@ -1,10 +1,10 @@
-﻿@model meivorts.Models.TipoCompromisso
+﻿@model meivorts.Models.Usuario
 
 @{
     ViewBag.Title = "Create";
 }
 
-<h2>Tipo Compromisso</h2>
+<h2>Usuário</h2>
 
 @using (Html.BeginForm())
 {
@@ -17,14 +17,21 @@
     <form class="form-horizontal" role="form">
         <div class="form-group">
             <fieldset>
-                <legend>Tipo Compromisso</legend>
+                <legend>Usuário</legend>
                 <div class="control-group">
                     <div class="control-label">
-                        @Html.LabelFor(model => model.NomeCompromisso)
+                        @Html.LabelFor(model => model.NomeUsuario)
                     </div>
                     <div class="control">
-                        @Html.TextBoxFor(model => model.NomeCompromisso, new { @class = "form-control", @style = "Width:20%" })
-                        @Html.ValidationMessageFor(model => model.NomeCompromisso)
+                        @Html.TextBoxFor(model => model.NomeUsuario, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.NomeUsuario)
+                    </div>
+                    <div class="control-label">
+                        @Html.LabelFor(model => model.Senha)
+                    </div>
+                    <div class="control">
+                        @Html.PasswordFor(model => model.Senha, new { @class = "form-control", @style = "Width:20%" })
+                        @Html.ValidationMessageFor(model => model.Senha)
                         <p></p>
                     </div>
                 </div>

@@ -1,15 +1,14 @@
-﻿using System;
+﻿using meivorts.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using meivorts.Controllers;
-using meivorts.Models;
 
 namespace meivorts.Controllers
 {
     [Authorize]
-    public class TipoCompromissoController : Controller
+    public class TipoUsuarioController : Controller
     {
         #region objects
 
@@ -19,16 +18,16 @@ namespace meivorts.Controllers
 
         #region CRUD
         //
-        // GET: /TipoCompromisso/
+        // GET: /TipoUsuario/
 
         public ActionResult Index()
         {
-            var tipoCompromisso = db.TipoCompromisso.Where(model => model.Excluido == false).ToList();
-            return View(tipoCompromisso);
+            var tipoUsuario = db.TipoUsuario.Where(model => model.Excluido == false).ToList();
+            return View(tipoUsuario);
         }
 
         //
-        // GET: /TipoCompromisso/Create
+        // GET: /TipoUsuario/Create
 
         public ActionResult Create(int id)
         {
@@ -38,17 +37,17 @@ namespace meivorts.Controllers
             }
             else
             {
-                TipoCompromisso tipoCompromisso = db.TipoCompromisso.Find(id);
+                TipoUsuario tipoUsuario = db.TipoUsuario.Find(id);
 
-                return View(tipoCompromisso);
+                return View(tipoUsuario);
             }
         }
 
         //
-        // POST: /TipoCompromisso/Create
+        // POST: /TipoUsuario/Create
 
         [HttpPost]
-        public ActionResult Create(int id, TipoCompromisso tipoCompromisso)
+        public ActionResult Create(int id, TipoUsuario tipoUsuario)
         {
             try
             {
@@ -56,20 +55,20 @@ namespace meivorts.Controllers
                 {
                     if (id.Equals(0))
                     {
-                        tipoCompromisso.DataAlteracao = tipoCompromisso.DataCriacao = DateTime.Now;
+                        tipoUsuario.DataAlteracao = tipoUsuario.DataCriacao = DateTime.Now;
 
-                        db.TipoCompromisso.Add(tipoCompromisso);
+                        db.TipoUsuario.Add(tipoUsuario);
                     }
                     else
                     {
-                        TipoCompromisso tipoCompromissoEdit = new TipoCompromisso();
+                        TipoUsuario tipoUsuarioEdit = new TipoUsuario();
 
-                        tipoCompromissoEdit = db.TipoCompromisso.Find(id);
+                        tipoUsuarioEdit = db.TipoUsuario.Find(id);
 
-                        tipoCompromissoEdit.DataAlteracao = DateTime.Now;
-                        tipoCompromissoEdit.NomeCompromisso = tipoCompromisso.NomeCompromisso;
+                        tipoUsuarioEdit.DataAlteracao = DateTime.Now;
+                        tipoUsuarioEdit.Nome = tipoUsuario.Nome;
 
-                        db.Entry(tipoCompromissoEdit).State = System.Data.Entity.EntityState.Modified;
+                        db.Entry(tipoUsuarioEdit).State = System.Data.Entity.EntityState.Modified;
                     }
 
                     db.SaveChanges();
@@ -78,12 +77,12 @@ namespace meivorts.Controllers
                 }
                 else
                 {
-                    return View(tipoCompromisso);
+                    return View(tipoUsuario);
                 }
             }
             catch
             {
-                return View(tipoCompromisso);
+                return View(tipoUsuario);
             }
         }
         /// <summary>
@@ -96,18 +95,18 @@ namespace meivorts.Controllers
         {
             try
             {
-                TipoCompromisso tipoCompromisso = new TipoCompromisso();
+                TipoUsuario tipoUsuario = new TipoUsuario();
 
-                //verifica se o tipoContato está sendo usado por algum contato não excluido
-                int hasTipoCompromissoInCompromisso = db.Compromisso.Where(x => x.TipoCompromisso == id && x.Excluido == false).Count();
-                if (hasTipoCompromissoInCompromisso.Equals(0))
+                //verifica se o tipoUsuario está sendo usado por algum contato não excluido
+                int hasTipoUsuarioInUsuario = db.Usuario.Where(x => x.TipoUsuario == id && x.Excluido == false).Count();
+                if (hasTipoUsuarioInUsuario.Equals(0))
                 {
-                    tipoCompromisso = db.TipoCompromisso.Find(id);
+                    tipoUsuario = db.TipoUsuario.Find(id);
 
-                    tipoCompromisso.DataAlteracao = DateTime.Now;
-                    tipoCompromisso.Excluido = true;
+                    tipoUsuario.DataAlteracao = DateTime.Now;
+                    tipoUsuario.Excluido = true;
 
-                    db.Entry(tipoCompromisso).State = System.Data.Entity.EntityState.Modified;
+                    db.Entry(tipoUsuario).State = System.Data.Entity.EntityState.Modified;
                     db.SaveChanges();
 
                     return Json(
@@ -124,7 +123,7 @@ namespace meivorts.Controllers
                         new
                         {
                             OK = false,
-                            Mensagem = "Exclusão não permitida, existem compromissos usando este item"
+                            Mensagem = "Exclusão não permitida, existem usuários usando este item"
                         },
                         JsonRequestBehavior.AllowGet);
                 }

@@ -1,0 +1,25 @@
+﻿@model meivorts.Models.Usuario
+
+@{
+    ViewBag.Title = "Login";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <fieldset>
+        <legend>Login</legend>
+        <form class="form-signin" role="form">
+
+            @Html.TextBoxFor(model => model.NomeUsuario, new { @class = "form-control", @style = "Width:20%", @placeholder = "Usuario" })
+            <p></p>
+            @Html.PasswordFor(model => model.Senha, new { @class = "form-control", @style = "Width:20%", @placeholder = "Senha" })
+            <p></p>
+            <div class="controls">
+                <button class="btn btn-success" type="submit">Entrar</button>
+            </div>
+
+        </form>
+    </fieldset>
+}
