@@ -1,10 +1,11 @@
-﻿@model IEnumerable<meivorts.Models.Compromisso>
+﻿@model PagedList.IPagedList<meivorts.Models.Compromisso>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Compromissos";
 }
 
-<h2>Index</h2>
 <div class="col-lg-12">
     <p>
         <button class="btn btn-primary" type="button" onclick="location.href='@Url.Action("Create", "compromisso", new { id = 0 })'">Novo</button>
@@ -16,25 +17,25 @@
             <table class="table table-striped ">
                 <tr>
                     <th>
-                        @Html.DisplayNameFor(model => model.TipoCompromisso)
+                        @Html.ActionLink("tipo de compromisso", null, new { sortOrder = ViewBag.TipoCompromissoSort, currentFilter = ViewBag.CurrentFilter })
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Local.NomeLocal)
+                        @Html.ActionLink("Local", null, new { sortOrder = ViewBag.LocalSort })
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Data)
+                        @Html.ActionLink("Data", null, new { sortOrder = ViewBag.DataSort })
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Hora)
+                        @Html.ActionLink("Status Compromisso", null, new { sortOrder = ViewBag.StatusCompromissoSort })
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.StatusCompromisso)
+                          @Html.DisplayNameFor(model => model.FirstOrDefault().Hora)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Contato)
+                        @Html.DisplayNameFor(model => model.FirstOrDefault().Contato)
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.Descricao)
+                         @Html.DisplayNameFor(model => model.FirstOrDefault().Descricao)
                     </th>
                     <th></th>
 
@@ -55,10 +56,10 @@
                             @Html.DisplayFor(modelItem => item.Data)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.Hora)
+                            @Html.DisplayFor(modelItem => item.StatusCompromisso1.Nome)
                         </td>
                         <td>
-                            @Html.DisplayFor(modelItem => item.StatusCompromisso1.Nome)
+                            @Html.DisplayFor(modelItem => item.Hora)
                         </td>
                         <td>
                             <button type="button" class="glyphicon glyphicon-plus btn btn-xs btn-default" data-target="#Contato_@Html.DisplayFor(modelItem => item.Contato)" data-toggle="modal"></button>
@@ -118,7 +119,9 @@
                     </tr>
                 }
             </table>
+            <p>Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount</p>
 
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
         }
     </div>
 </div>

@@ -7,10 +7,11 @@ using meivorts.Controllers;
 using meivorts.Models;
 using System.Security.Cryptography;
 using System.Text;
+using PagedList;
 
 namespace meivorts.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ContatoController : Controller
     {
         #region objects
@@ -25,10 +26,41 @@ namespace meivorts.Controllers
         // GET: /Contato/
 
 
-        public ActionResult Index()
+        public ActionResult Index(string sortOrder, string currentPage, int? page)
         {
+            //muda o valor do viewbag para o inverso do atual
+            ViewBag.Nomesort = sortOrder == "Nome" ? "Nome_desc" : "Nome";
+            ViewBag.TipoContatoSort = sortOrder == "TipoContato" ? "TipoContato_desc" : "TipoContato";
+           
+            //realiza a busca
             var contato = db.Contato.Include("TipoContato1").Where(x => x.Excluido == false).ToList();
-            return View(contato);
+
+            //realiza o sort conforme a coluna clicada
+            switch (sortOrder)
+            {
+                case "Nome":
+                    contato = contato.OrderBy(x => x.Nome).ToList();
+                    break;
+                case "Nome_desc":
+                    contato = contato.OrderByDescending(x => x.Nome).ToList();
+                    break;
+                case "TipoContato":
+                    contato = contato.OrderBy(x => x.TipoContato1.NomeTipoContato).ToList();
+                    break;
+                case "TipoContato_desc":
+                    contato = contato.OrderByDescending(x => x.TipoContato1.NomeTipoContato).ToList();
+                    break;
+                default:
+                    break;
+            }
+
+            //numero de itens por pagina
+            int pageSize = 10;
+
+            //retorna o numero de paginas ou 1 caso o numero de paginas seja nulo
+            int pageNumber = (page ?? 1);
+
+            return View(contato.ToPagedList(pageNumber, pageSize));
         }
 
         //
