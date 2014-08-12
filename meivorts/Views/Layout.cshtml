@@ -2,6 +2,7 @@
     Layout = null;
 }
 
+
 <!DOCTYPE html>
 
 <html lang="pt-br">
@@ -13,11 +14,19 @@
     <title>Meivorts - @ViewBag.Title</title>
 
     <link href="@Url.Content("~/Content/bootstrap.min.css")" rel="stylesheet" />
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.css">
+
     <script src="~/Scripts/jquery-2.1.1.min.js"></script>
     <script src="~/Scripts/jquery.inputmask/jquery.inputmask-3.0.55.js"></script>
     <script type="text/javascript" src="~/Scripts/Util/BootstrapAux.js"></script>
     <script type="text/javascript" src="~/Scripts/Util/Mask.js"></script>
     <script type="text/javascript" src="~/Scripts/Util/Action.js"></script>
+    <!-- DataTables --> 
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.js"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/plug-ins/725b2a2115b/sorting/date-uk.js"></script>
+
+    @RenderSection("scripts", required: false)
     <style>
         body {
         }
@@ -64,7 +73,7 @@
 
         </div>
     }
-    <div class="container" style="padding-top:60px">
+    <div class="container" style="padding-top: 60px">
 
         @RenderBody()
 

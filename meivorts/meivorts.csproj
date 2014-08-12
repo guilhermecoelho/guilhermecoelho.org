@@ -245,6 +245,7 @@
     <Content Include="Scripts\pages\Local.js" />
     <Content Include="Scripts\Util\Action.js" />
     <Content Include="Scripts\Util\BootstrapAux.js" />
+    <Content Include="Scripts\Util\DataTable.js" />
     <Content Include="Scripts\Util\Mask.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">

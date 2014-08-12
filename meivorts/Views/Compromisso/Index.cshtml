@@ -1,6 +1,4 @@
-﻿@model PagedList.IPagedList<meivorts.Models.Compromisso>
-@using PagedList.Mvc;
-<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+﻿@model IEnumerable<meivorts.Models.Compromisso>
 
 @{
     ViewBag.Title = "Compromissos";
@@ -14,114 +12,117 @@
     <div class="table-responsive">
         @if (Model.Count() > 0)
         {
-            <table class="table table-striped ">
-                <tr>
-                    <th>
-                        @Html.ActionLink("tipo de compromisso", null, new { sortOrder = ViewBag.TipoCompromissoSort, currentFilter = ViewBag.CurrentFilter })
-                    </th>
-                    <th>
-                        @Html.ActionLink("Local", null, new { sortOrder = ViewBag.LocalSort })
-                    </th>
-                    <th>
-                        @Html.ActionLink("Data", null, new { sortOrder = ViewBag.DataSort })
-                    </th>
-                    <th>
-                        @Html.ActionLink("Status Compromisso", null, new { sortOrder = ViewBag.StatusCompromissoSort })
-                    </th>
-                    <th>
-                          @Html.DisplayNameFor(model => model.FirstOrDefault().Hora)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.FirstOrDefault().Contato)
-                    </th>
-                    <th>
-                         @Html.DisplayNameFor(model => model.FirstOrDefault().Descricao)
-                    </th>
-                    <th></th>
-
-                </tr>
-
-                @foreach (var item in Model)
-                {
+            <table class="table table-striped " id="myTable">
+                <thead>
                     <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.TipoCompromisso1.NomeCompromisso)
-                        </td>
-                        <td>
-                            <button type="button" class="glyphicon glyphicon-plus btn btn-xs btn-default left" data-target="#Local_@Html.DisplayFor(modelItem => item.IDLocal)" onclick="" data-toggle="modal"></button>
-                            @Html.DisplayFor(modelItem => item.Local.NomeLocal)
-
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Data)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.StatusCompromisso1.Nome)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Hora)
-                        </td>
-                        <td>
-                            <button type="button" class="glyphicon glyphicon-plus btn btn-xs btn-default" data-target="#Contato_@Html.DisplayFor(modelItem => item.Contato)" data-toggle="modal"></button>
-                            @Html.DisplayFor(modelItem => item.Contato1.Nome)
-
-                        </td>
-                        <td align="center">
-                            <button type="button" class="glyphicon glyphicon-plus btn btn-xs btn-default" data-toggle="popover" title="Observa&#231;&#227;o" data-content="@Html.DisplayFor(modelItem => item.Descricao) " />
-                        </td>
-                        <td align="right">
-                            <button class="glyphicon glyphicon-pencil btn-sm btn btn-success" type="button" onclick="location.href='@Url.Action("Create", "compromisso", new { id = item.ID })'">Editar</button>
-                            <button class="glyphicon glyphicon-trash btn-sm btn btn-danger" name="Excluir" type="button" onclick="Excluir(@Html.DisplayFor(modelItem => item.ID), 'compromisso')">Excluir</button>
-                        </td>
-                        <div class="modal fade" id="Local_@Html.DisplayFor(modelItem => item.IDLocal)" tabindex=" -1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="modalLocal">Local</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Local: @Html.DisplayFor(modelItem => item.Local.NomeLocal)</p>
-                                        <p>Rua: @Html.DisplayFor(modelItem => item.Local.Endereco.Rua)</p>
-                                        <p>Número: @Html.DisplayFor(modelItem => item.Local.Endereco.Numero)</p>
-                                        <p>Bairro: @Html.DisplayFor(modelItem => item.Local.Endereco.Bairro)</p>
-                                        <p>Cidade: @Html.DisplayFor(modelItem => item.Local.Endereco.Cidade)</p>
-                                        <p>UF: @Html.DisplayFor(modelItem => item.Local.Endereco.UF)</p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="modal fade" id="Contato_@Html.DisplayFor(modelItem => item.Contato)" tabindex=" -1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                                        <h4 class="modal-title" id="modalContato">Contato</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>Nome: @Html.DisplayFor(modelItem => item.Contato1.Nome) </p>
-                                        <p>Tipo de contato: @Html.DisplayFor(modelItem => item.Contato1.TipoContato1.NomeTipoContato) </p>
-                                        <p>Email: @Html.DisplayFor(modelItem => item.Contato1.Email) </p>
-                                        <p>Telefone: @Html.DisplayFor(modelItem => item.Contato1.Telefone) </p>
-                                        <p>Facebook: @Html.DisplayFor(modelItem => item.Contato1.Facebook) </p>
-                                        <p>Twitter: @Html.DisplayFor(modelItem => item.Contato1.Twitter) </p>
-                                    </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TipoCompromisso)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Local)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Data)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.StatusCompromisso)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Hora)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Contato)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descricao)
+                        </th>
+                        <th></th>
                     </tr>
-                }
-            </table>
-            <p>Pág. @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) de @Model.PageCount</p>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.TipoCompromisso1.NomeCompromisso)
+                            </td>
+                            <td>
+                                <button type="button" class="glyphicon glyphicon-plus btn btn-xs btn-default left" data-target="#Local_@Html.DisplayFor(modelItem => item.IDLocal)" onclick="" data-toggle="modal"></button>
+                                @Html.DisplayFor(modelItem => item.Local.NomeLocal)
 
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Data)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.StatusCompromisso1.Nome)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Hora)
+                            </td>
+                            <td>
+                                <button type="button" class="glyphicon glyphicon-plus btn btn-xs btn-default" data-target="#Contato_@Html.DisplayFor(modelItem => item.Contato)" data-toggle="modal"></button>
+                                @Html.DisplayFor(modelItem => item.Contato1.Nome)
+
+                            </td>
+                            <td align="center">
+                                <button type="button" class="glyphicon glyphicon-plus btn btn-xs btn-default" data-toggle="popover" title="Observa&#231;&#227;o" data-content="@Html.DisplayFor(modelItem => item.Descricao) " />
+                            </td>
+                            <td align="right">
+                                <button class="glyphicon glyphicon-pencil btn-sm btn btn-success" type="button" onclick="location.href='@Url.Action("Create", "compromisso", new { id = item.ID })'">Editar</button>
+                                <button class="glyphicon glyphicon-trash btn-sm btn btn-danger" name="Excluir" type="button" onclick="Excluir(@Html.DisplayFor(modelItem => item.ID), 'compromisso')">Excluir</button>
+                            </td>
+                            <div class="modal fade" id="Local_@Html.DisplayFor(modelItem => item.IDLocal)" tabindex=" -1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title" id="modalLocal">Local</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Local: @Html.DisplayFor(modelItem => item.Local.NomeLocal)</p>
+                                            <p>Rua: @Html.DisplayFor(modelItem => item.Local.Endereco.Rua)</p>
+                                            <p>Número: @Html.DisplayFor(modelItem => item.Local.Endereco.Numero)</p>
+                                            <p>Bairro: @Html.DisplayFor(modelItem => item.Local.Endereco.Bairro)</p>
+                                            <p>Cidade: @Html.DisplayFor(modelItem => item.Local.Endereco.Cidade)</p>
+                                            <p>UF: @Html.DisplayFor(modelItem => item.Local.Endereco.UF)</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal fade" id="Contato_@Html.DisplayFor(modelItem => item.Contato)" tabindex=" -1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                            <h4 class="modal-title" id="modalContato">Contato</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Nome: @Html.DisplayFor(modelItem => item.Contato1.Nome) </p>
+                                            <p>Tipo de contato: @Html.DisplayFor(modelItem => item.Contato1.TipoContato1.NomeTipoContato) </p>
+                                            <p>Email: @Html.DisplayFor(modelItem => item.Contato1.Email) </p>
+                                            <p>Telefone: @Html.DisplayFor(modelItem => item.Contato1.Telefone) </p>
+                                            <p>Facebook: @Html.DisplayFor(modelItem => item.Contato1.Facebook) </p>
+                                            <p>Twitter: @Html.DisplayFor(modelItem => item.Contato1.Twitter) </p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </tr>
+                    }
+                </tbody>
+            </table>
         }
     </div>
 </div>
+
+@section scripts{
+    <script src="~/Scripts/Util/DataTable.js"></script>
+}

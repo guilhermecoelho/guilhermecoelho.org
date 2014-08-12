@@ -21,55 +21,12 @@ namespace meivorts.Controllers
         //
         // GET: /Compromisso/
 
-        public ActionResult Index(string sortOrder, string currentPage, int? page)
+        public ActionResult Index()
         {
-            //muda o valor do viewbag para o inverso do atual
-            ViewBag.TipoCompromissoSort = sortOrder == "TipoCompromisso" ? "TipoCompromisso_desc" : "TipoCompromisso";
-            ViewBag.LocalSort = sortOrder == "Local" ? "Local_desc" : "Local";
-            ViewBag.DataSort = sortOrder == "Data" ? "Data_desc" : "Data";
-            ViewBag.StatusCompromissoSort = sortOrder == "StatusCompromisso" ? "StatusCompromisso_desc" : "StatusCompromisso";
-
             //realiza a busca
-            var compromisso = db.Compromisso.Include("Contato1").Include("StatusCompromisso1").Include("TipoCompromisso1").Include("Local").Where(x => x.Excluido == false).Where(x => x.Data >= DateTime.Now).ToList();
-
-            //realiza o sort conforme a coluna clicada
-            switch (sortOrder)
-            {
-                case "TipoCompromisso":
-                    compromisso = compromisso.OrderBy(x => x.TipoCompromisso1.NomeCompromisso).ToList();
-                    break;
-                case "TipoCompromisso_desc":
-                    compromisso = compromisso.OrderByDescending(x => x.TipoCompromisso1.NomeCompromisso).ToList();
-                    break;
-                case "Local":
-                    compromisso = compromisso.OrderBy(x => x.Local.NomeLocal).ToList();
-                    break;
-                case "Local_desc":
-                    compromisso = compromisso.OrderByDescending(x => x.Local.NomeLocal).ToList();
-                    break;
-                case "Data":
-                    compromisso = compromisso.ToList().OrderBy(x => x.Data).ToList();
-                    break;
-                case "Data_desc":
-                    compromisso = compromisso.OrderByDescending(x => x.Data).ToList();
-                    break;
-                case "StatusCompromisso_desc":
-                    compromisso = compromisso.OrderByDescending(x => x.StatusCompromisso1.Nome).ToList();
-                    break;
-                case "StatusCompromisso":
-                    compromisso = compromisso.OrderBy(x => x.StatusCompromisso1.Nome).ToList();
-                    break;
-                default:
-                    compromisso = compromisso.OrderBy(x => x.Data).OrderBy(x => x.TipoCompromisso1.NomeCompromisso).ToList();
-                    break;
-            }
-            //numero de itens por pagina
-            int pageSize = 10;
-
-            //retorna o numero de paginas ou 1 caso o numero de paginas seja nulo
-            int pageNumber = (page ?? 1);
-
-            return View(compromisso.ToPagedList(pageNumber, pageSize));
+            var compromisso = db.Compromisso.Include("Contato1").Include("StatusCompromisso1").Include("TipoCompromisso1").Include("Local").Where(x => x.Excluido == false).Where(x => x.Data >= DateTime.Now).OrderBy(x => x.Data).OrderBy(x => x.TipoCompromisso1.NomeCompromisso).ToList();
+            
+            return View(compromisso);
         }
         //
         // GET: /Compromisso/Create
