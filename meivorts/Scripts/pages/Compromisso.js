@@ -23,6 +23,9 @@ $(document).ready(function () {
                 "sSortAscending": ": Ordenar colunas de forma ascendente",
                 "sSortDescending": ": Ordenar colunas de forma descendente"
             }
-        }
+        },
+        "columnDefs": [
+            { "type": 'date-uk', "targets": 2 }
+        ]
     });
 });

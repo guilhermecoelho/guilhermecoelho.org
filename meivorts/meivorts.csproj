@@ -230,6 +230,7 @@
       <DependentUpon>_Model.edmx</DependentUpon>
       <LastGenOutput>_Model.cs</LastGenOutput>
     </Content>
+    <None Include="Properties\PublishProfiles\meivorts.pubxml" />
     <None Include="Scripts\jquery-2.1.1.intellisense.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -242,6 +243,7 @@
     <Content Include="Scripts\jquery.inputmask\jquery.inputmask.numeric.extensions-3.0.55.js" />
     <Content Include="Scripts\jquery.inputmask\jquery.inputmask.phone.extensions-3.0.55.js" />
     <Content Include="Scripts\jquery.inputmask\jquery.inputmask.regex.extensions-3.0.55.js" />
+    <Content Include="Scripts\pages\Compromisso.js" />
     <Content Include="Scripts\pages\Local.js" />
     <Content Include="Scripts\Util\Action.js" />
     <Content Include="Scripts\Util\BootstrapAux.js" />
