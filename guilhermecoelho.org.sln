@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 2012 for Web
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "guilhermecoelho.org", "guilhermecoelho.org\guilhermecoelho.org.csproj", "{C4ACED1C-A458-4D39-837B-5E0D6A569286}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meivorts", "meivorts\meivorts.csproj", "{77104228-7C85-4B29-BBE0-ABFF65B7AEE7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Email", "Email\Email.csproj", "{C6F099E4-EFA0-4865-94F7-CFC16609D37B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "meivortsService", "meivortsService\meivortsService.csproj", "{C396DCC3-1250-4055-BA36-20D0D00580DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,11 +27,18 @@ Global
 		{C6F099E4-EFA0-4865-94F7-CFC16609D37B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6F099E4-EFA0-4865-94F7-CFC16609D37B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C6F099E4-EFA0-4865-94F7-CFC16609D37B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C396DCC3-1250-4055-BA36-20D0D00580DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C396DCC3-1250-4055-BA36-20D0D00580DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C396DCC3-1250-4055-BA36-20D0D00580DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C396DCC3-1250-4055-BA36-20D0D00580DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPathV6 = packages\EnterpriseLibrary.Common.6.0.1304.0\lib\NET45;packages\EnterpriseLibrary.Logging.6.0.1304.0\lib\NET45
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal
